@@ -1,5 +1,5 @@
 import Calendar from 'react-calendar';
-import Boardgamedetail from 'components/boardgamedetail.js';
+//import Boardgamedetail from './components/boardgamedetail.js';
 import { useState } from 'react';
 import 'react-calendar/dist/Calendar.css';
 import './App.css';
@@ -22,7 +22,7 @@ function App() {
         {date.toDateString()}
       </p>
       <div>
-        <Boardgamedetail>
+      
       </div>
     </div>
   );

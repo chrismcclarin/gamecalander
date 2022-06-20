@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import CreateArmy from '../pages/CreateArmy';
+import Createbg from '../pages/Createbg';
 import CreateShow from '../pages/CreateShow';
 
 
@@ -8,60 +8,60 @@ import CreateShow from '../pages/CreateShow';
 
 function BGCreate(props) {
     
-    const [ units, setUnits ] = useState(null);
-    const URL = 'https://bgcalbackend.herokuapp.com/games/';
+    const [ bg, setBG ] = useState(null);
+    const URL = 'https://bgbackend.herokuapp.com/bg';
 
-    const getUnits = async () => {
+    const getBG = async () => {
         const response = await fetch(URL);
         const data = await response.json();
-        setUnits(data);
+        setBG(data);
     };
-    const createUnits = async (unit) => {
+    const createBG = async (bg) => {
         // make post request to create people
     await fetch(URL, {
         method: "POST",
         headers: {
             "Content-Type": "Application/json",
         },
-        body: JSON.stringify(unit),
+        body: JSON.stringify(bg),
     });
 
-    //   update list of units
-    getUnits();
+    //   update list of bg
+    getBG();
     };
-    const updateUnits = async (unit, id) => {
+    const updateBG = async (bg, id) => {
         await fetch(URL + id, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'Application/json',
             },
-            body: JSON.stringify(unit),
+            body: JSON.stringify(bg),
         });
-        getUnits();
+        getBG();
     }
 
-    const deleteUnits = async id => {
+    const deleteBGs = async id => {
         await fetch(URL + id, {
             method: 'DELETE',
         })
-        getUnits();
+        getBG();
     }
 
-    useEffect(() => getUnits(), []);
+    useEffect(() => getBG(), []);
 
     return (
     
             <Switch>
-                <Route exact path='/units'>
-                    <CreateArmy units={units} createUnits={createUnits} />
+                <Route exact path='/bg'>
+                    <Createbg bg={bg} createBG={createBG} />
                 </Route>
                 <Route 
-                path='/units/:id'
+                path='/bg/:id'
                 render={(rp) => (
                     <CreateShow
-                    units = {units}
-                    updateUnits = {updateUnits}
-                    deleteUnits = {deleteUnits}
+                    bg = {bg}
+                    updateBG = {updateBG}
+                    deleteBGs = {deleteBGs}
                     {...rp}
                 />
                 )}
