@@ -9,7 +9,7 @@ import CreateShow from '../pages/CreateShow';
 function BGCreate(props) {
     
     const [ bg, setBG ] = useState(null);
-    const URL = 'https://bgbackend.herokuapp.com/bg';
+    const URL = 'https://bgbackend.herokuapp.com/bg/';
 
     const getBG = async () => {
         const response = await fetch(URL);
