@@ -1,12 +1,11 @@
-function boardgamedetail() {
-    const list = data.map()
+function Boardgamedetail(props) {
     return (
         <div>
-            <h1>list.title</h1>
-            <h1>list.URL</h1>
-            <h1>list.score</h1>
+            <h1>{props.show.Name}</h1>
+            <h2>{props.show.Players}</h2>
+            <h3>{props.show.Score}</h3>
         </div>
     )
 }
 
-export default boardgamedetail;
+export default Boardgamedetail;
