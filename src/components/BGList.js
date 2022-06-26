@@ -17,7 +17,12 @@ function BGList(props) {
     }
 
     const detailLoaded = () => {
-        return <Boardgamedetail show={show}/>
+        return (
+            <Boardgamedetail 
+            show={show}
+            updateBG={props.updateBG}
+            deleteBG={props.deleteBG}
+            />)
     }
 
     const loading = () => {
