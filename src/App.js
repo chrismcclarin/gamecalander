@@ -22,6 +22,8 @@ function App() {
       Date: date
   });
   const URL = "https://bgbackend.herokuapp.com/bg";
+  //const URL = "http://localhost:4000/bg";
+
 
   const getBG = async () => {
       const response = await fetch(URL);
@@ -68,8 +70,7 @@ function App() {
 }
 
   const triggerText = 'Open form';
-  const onSubmit = (event) => {
-    event.preventDefault(event);
+  const onSubmit = () => {
     createBG(newbg);
     setNewBG({
       Name: "",

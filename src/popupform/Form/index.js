@@ -2,9 +2,14 @@ import React from 'react';
 
 export const Form = ({ onSubmit, closeModal, handleChange }) => {
 
+  const duoSubmit = (event) => {
+    event.preventDefault(event)
+    onSubmit();
+    closeModal();
+  }
 
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={duoSubmit}>
       <div className="form-group">
         <label htmlFor="name">Name</label>
         <input className="form-control" id="Name" onChange={handleChange} />
