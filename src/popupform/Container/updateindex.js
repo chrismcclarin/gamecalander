@@ -1,5 +1,7 @@
+//This is an exact copy of index.js inside Container, except it imports updateindex.js from Modal
+
 import React, { Component } from 'react';
-import Modal from '../Modal/index.js';
+import Modal from '../Modal/updateindex.js';
 import TriggerButton from '../TriggerButton';
 export class Container extends Component {
   state = { isShown: false };
@@ -44,7 +46,7 @@ export class Container extends Component {
             closeModal={this.closeModal}
             onKeyDown={this.onKeyDown}
             onClickOutside={this.onClickOutside}
-            date={this.props.date}
+            show={this.props.show}
           />
         ) : null}
       </React.Fragment>

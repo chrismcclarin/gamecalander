@@ -5,6 +5,8 @@ import 'react-calendar/dist/Calendar.css';
 import './App.css';
 import BGList from './components/BGList'
 import { Container } from './popupform/Container';
+import Boardgamedetail from './components/Boardgamedetail'
+import Moment from 'moment'
 
 function App() {
   const [date, setDate] = useState(new Date());
@@ -19,16 +21,13 @@ function App() {
       Player6: "",
       Winner: "",
       url: "",
-      Date: date
+      Date: Date,
   });
-  const URL = "https://bgbackend.herokuapp.com/bg";
-  //const URL = "http://localhost:4000/bg";
-
+  const URL = "https://bgbackend.herokuapp.com/bg/";
 
   const getBG = async () => {
       const response = await fetch(URL);
       const data = await response.json();
-      console.log(data)
       setBG(data);
   };
 
@@ -45,29 +44,29 @@ function App() {
     getBG();
   };
 
-  // const updateBG = async (bg, id) => {
-  //     await fetch(beURL + id, {
-  //         method: 'PUT',
-  //         headers: {
-  //             'Content-Type': 'Application/json',
-  //         },
-  //         body: JSON.stringify(bg),
-  //     });
-  //     getBG();
-  // }
+  const updateBG = async (bg, id) => {
+      await fetch(URL + id, {
+          method: 'PUT',
+          headers: {
+              'Content-Type': 'Application/json',
+          },
+          body: JSON.stringify(bg),
+      });
+      getBG();
+  }
 
-  // const deleteBG = async id => {
-  //     await fetch(beURL + id, {
-  //         method: 'DELETE',
-  //     })
-  //     getBG();
-  // }
+  const deleteBG = async (id) => {
+      await fetch(URL + id, {
+          method: 'DELETE',
+      })
+      getBG();
+  }
 
   useEffect(() => {getBG()}, []);
 
   const handleChange = (event) => {
     setNewBG({...newbg, [event.target.id]: event.target.value})
-}
+  }
 
   const triggerText = 'Open form';
   const onSubmit = () => {
@@ -82,10 +81,32 @@ function App() {
       Player6: "",
       Winner: "",
       url: "",
-      Date: date
+      Date: "",
     })
-    console.log(newbg)
   };
+
+  function Display() {
+    function dateconstruct(date){
+      const DATE = Moment(date).format("MMM Do YYYY")
+      return DATE
+  }
+    const calenderDate = Moment(date).format("MMM Do YYYY")
+    const dateComp = bg.filter(p => dateconstruct(p.Date) === calenderDate)
+
+    function showCalenderComponents() {
+      return dateComp.map((boardgame, i) => {
+              return (
+                <div key={i}>
+              <Boardgamedetail 
+              show={boardgame}
+              updateBG={updateBG}
+              deleteBG={deleteBG} 
+              setShow={getBG}
+              />
+              </div>
+              )})}
+    return <div>{(dateComp !== 0) ? showCalenderComponents() : ''}</div>
+  }
 
   
   
@@ -95,21 +116,29 @@ function App() {
       <div className='calendar-container'>
         <Calendar onChange={setDate} value={date} />
       </div>
-      <p className='text-center'>
+      {/* <p className='text-center'>
         <span className='bold'>Selected Date:</span>{' '}
         {date.toDateString()}
-      </p>
+      </p> */}
       <div>
         <Container 
         triggerText={triggerText} 
         onSubmit={onSubmit}
         handleChange={handleChange}
+        date={date}
         />
       </div>
       <div>
         <BGList 
-        bg={bg} 
+        bg={bg}
+        deleteBG={deleteBG}
+        updateBG={updateBG}
+        date={date}
+        setDate={setDate}
         />
+      </div>
+      <div>
+      {bg ? Display() : ""}
       </div>
     </div>
   );

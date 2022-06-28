@@ -1,6 +1,8 @@
+//This is a copy of index.js, except it imports the update Form.
+
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Form from '../Form/index.js';
+import Form from '../Form/updateindex.js';
 import FocusTrap from 'focus-trap-react';
 export const Modal = ({
   onClickOutside,
@@ -10,7 +12,7 @@ export const Modal = ({
   closeModal,
   onSubmit,
   handleChange,
-  date
+  show
 }) => {
   return ReactDOM.createPortal(
     <FocusTrap>
@@ -43,7 +45,7 @@ export const Modal = ({
             onSubmit={onSubmit}
             closeModal={closeModal}
             handleChange={handleChange}
-            date={date}
+            show={show}
             />
           </div>
         </div>

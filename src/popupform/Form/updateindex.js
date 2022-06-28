@@ -1,7 +1,8 @@
-import React from 'react';
-import Moment from 'moment'
+//This is a copy of Form's index.js, except for adding the accepted values.
 
-export const Form = ({ onSubmit, closeModal, handleChange, date }) => {
+import React from 'react';
+
+export const Form = ({ onSubmit, closeModal, handleChange, show }) => {
 
   const duoSubmit = (event) => {
     event.preventDefault(event)
@@ -13,7 +14,7 @@ export const Form = ({ onSubmit, closeModal, handleChange, date }) => {
     <form onSubmit={duoSubmit}>
       <div className="form-group">
         <label htmlFor="name">Name</label>
-        <input className="form-control" id="Name" onChange={handleChange} />
+        <input className="form-control" defaultValue={show.Name} id="Name" onChange={handleChange} />
       </div>
       <div className="form-group">
         <label htmlFor="url">URL</label>
@@ -21,6 +22,7 @@ export const Form = ({ onSubmit, closeModal, handleChange, date }) => {
           type="url"
           className="form-control"
           id="url"
+          defaultValue={show.url}
           onChange={handleChange}
         />
       </div>
@@ -32,6 +34,7 @@ export const Form = ({ onSubmit, closeModal, handleChange, date }) => {
             type="text"
             className="form-control"
             id="Player1"
+            defaultValue={show.Player1}
             onChange={handleChange}
           />
           <label htmlFor="player2">Player 2</label>
@@ -39,6 +42,7 @@ export const Form = ({ onSubmit, closeModal, handleChange, date }) => {
             type="text"
             className="form-control"
             id="Player2"
+            defaultValue={show.Player2}
             onChange={handleChange}
           />
           <label htmlFor="player3">Player 3</label>
@@ -46,6 +50,7 @@ export const Form = ({ onSubmit, closeModal, handleChange, date }) => {
             type="text"
             className="form-control"
             id="Player3"
+            defaultValue={show.Player3}
             onChange={handleChange}
           />
           <label htmlFor="player4">Player 4</label>
@@ -53,6 +58,7 @@ export const Form = ({ onSubmit, closeModal, handleChange, date }) => {
             type="text"
             className="form-control"
             id="Player4"
+            defaultValue={show.Player4}
             onChange={handleChange}
           />
           <label htmlFor="player5">Player 5</label>
@@ -60,6 +66,7 @@ export const Form = ({ onSubmit, closeModal, handleChange, date }) => {
             type="text"
             className="form-control"
             id="Player5"
+            defaultValue={show.Player5}
             onChange={handleChange}
           />
           <label htmlFor="player6">Player 6</label>
@@ -67,6 +74,7 @@ export const Form = ({ onSubmit, closeModal, handleChange, date }) => {
             type="text"
             className="form-control"
             id="Player6"
+            defaultValue={show.Player6}
             onChange={handleChange}
           />
           <label htmlFor="winner">Who Won?</label>
@@ -74,13 +82,7 @@ export const Form = ({ onSubmit, closeModal, handleChange, date }) => {
             type="text"
             className="form-control"
             id="Winner"
-            onChange={handleChange}
-          />
-          <label htmlFor="winner">Date</label>
-          <input
-            type="date"
-            className="form-control"
-            id="Date"
+            defaultValue={show.Winner}
             onChange={handleChange}
           />
       </div>

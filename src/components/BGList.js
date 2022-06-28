@@ -4,25 +4,32 @@ import { useState } from 'react';
 function BGList(props) {
     const [show, setShow] = useState(null)
 
+
     function showComponent(event) {
         event.preventDefault();
         setShow(props.bg[event.target.value])
+        props.setDate(null)
     }
     const loaded = () => {
-            return props.bg.map((bg, i) => {
-                return (<div>
-                <button value={i} onClick={showComponent} key={i}>{bg.Name}</button>
-                </div>)
+            return props.bg.map((bg) => {
+                return (<div key={bg._id}>
+                <button onClick={showComponent}>{bg.Name}</button> 
+                </div>
+                )
             })
     }
 
     const detailLoaded = () => {
         return (
+            <div>
             <Boardgamedetail 
             show={show}
             updateBG={props.updateBG}
             deleteBG={props.deleteBG}
-            />)
+            setShow={setShow}
+            />
+            </div>)
+
     }
 
     const loading = () => {
@@ -36,7 +43,7 @@ function BGList(props) {
                 {props.bg ? loaded() : loading()}
             </div>
             <div>
-                {show ? detailLoaded() : ''} 
+                {props.date ? "" : detailLoaded()} 
             </div>
         </div>
 )
