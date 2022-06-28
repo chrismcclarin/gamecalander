@@ -4,16 +4,15 @@ import { useState } from 'react';
 function BGList(props) {
     const [show, setShow] = useState(null)
 
-
-    function showComponent(event) {
+    function showComponent (event) {
         event.preventDefault();
         setShow(props.bg[event.target.value])
-        props.setDate(null)
+        props.setDate()
     }
     const loaded = () => {
-            return props.bg.map((bg) => {
+            return props.bg.map((bg, i) => {
                 return (<div key={bg._id}>
-                <button onClick={showComponent}>{bg.Name}</button> 
+                <button value={i} onClick={showComponent}>{bg.Name}</button> 
                 </div>
                 )
             })
@@ -43,7 +42,7 @@ function BGList(props) {
                 {props.bg ? loaded() : loading()}
             </div>
             <div>
-                {props.date ? "" : detailLoaded()} 
+                {show ? (props.date ? "" : detailLoaded()) : ""} 
             </div>
         </div>
 )

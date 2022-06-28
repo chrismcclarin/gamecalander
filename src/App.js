@@ -1,5 +1,4 @@
 import Calendar from 'react-calendar';
-//import Boardgamedetail from './components/boardgamedetail.js';
 import { useState, useEffect } from 'react';
 import 'react-calendar/dist/Calendar.css';
 import './App.css';
@@ -21,7 +20,6 @@ function App() {
       Player6: "",
       Winner: "",
       url: "",
-      Date: Date,
   });
   const URL = "https://bgbackend.herokuapp.com/bg/";
 
@@ -101,7 +99,7 @@ function App() {
               show={boardgame}
               updateBG={updateBG}
               deleteBG={deleteBG} 
-              setShow={getBG}
+              setShow={setNewBG}
               />
               </div>
               )})}
@@ -135,6 +133,7 @@ function App() {
         updateBG={updateBG}
         date={date}
         setDate={setDate}
+        reset={getBG}
         />
       </div>
       <div>
