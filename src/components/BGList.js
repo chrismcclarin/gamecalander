@@ -7,7 +7,7 @@ function BGList(props) {
     function showComponent (event) {
         event.preventDefault();
         setShow(props.bg[event.target.value])
-        props.setDate()
+        props.changeCalender()
     }
     const loaded = () => {
             return props.bg.map((bg, i) => {

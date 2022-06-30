@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import Modal from '../Modal/updateindex.js';
-import TriggerButton from '../TriggerButton';
+import TriggerButton from '../TriggerButton/indexT';
 export class Container extends Component {
   state = { isShown: false };
   showModal = () => {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Modal from '../Modal/index.js';
-import TriggerButton from '../TriggerButton';
+import TriggerButton from '../TriggerButton/indexT';
 export class Container extends Component {
   state = { isShown: false };
   showModal = () => {
@@ -34,6 +34,9 @@ export class Container extends Component {
           showModal={this.showModal}
           buttonRef={(n) => (this.TriggerButton = n)}
           triggerText={this.props.triggerText}
+          date={this.props.date}
+          setNewBG={this.props.setNewBG}
+          newbg={this.props.newbg}
         />
         {this.state.isShown ? (
           <Modal
@@ -45,6 +48,8 @@ export class Container extends Component {
             onKeyDown={this.onKeyDown}
             onClickOutside={this.onClickOutside}
             date={this.props.date}
+            setNewBG={this.props.setNewBG}
+            newbg={this.props.newbg}
           />
         ) : null}
       </React.Fragment>

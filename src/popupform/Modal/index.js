@@ -10,7 +10,9 @@ export const Modal = ({
   closeModal,
   onSubmit,
   handleChange,
-  date
+  date,
+  setNewBG,
+  newbg
 }) => {
   return ReactDOM.createPortal(
     <FocusTrap>
@@ -44,6 +46,8 @@ export const Modal = ({
             closeModal={closeModal}
             handleChange={handleChange}
             date={date}
+            setNewBG={setNewBG}
+            newbg={newbg}
             />
           </div>
         </div>

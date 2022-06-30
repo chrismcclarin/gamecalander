@@ -1,7 +1,9 @@
 import React from 'react';
 import Moment from 'moment'
 
-export const Form = ({ onSubmit, closeModal, handleChange, date }) => {
+export const Form = ({ onSubmit, closeModal, handleChange, date, setNewBG, newbg }) => {
+
+  const Dateline = Moment(date).format("MMM Do YYYY")
 
   const duoSubmit = (event) => {
     event.preventDefault(event)
@@ -76,13 +78,8 @@ export const Form = ({ onSubmit, closeModal, handleChange, date }) => {
             id="Winner"
             onChange={handleChange}
           />
-          <label htmlFor="winner">Date</label>
-          <input
-            type="date"
-            className="form-control"
-            id="Date"
-            onChange={handleChange}
-          />
+          <br />
+          <label htmlFor="dated">Date : {Dateline}</label>
       </div>
       <div className="form-group">
         <button className="form-control btn btn-primary" type="submit">

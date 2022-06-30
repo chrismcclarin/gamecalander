@@ -1,9 +1,7 @@
 import Container from '../popupform/Container/updateindex.js';
 import { useState } from 'react';
-import Moment from 'moment'
 
 function Boardgamedetail({show, updateBG, deleteBG, setShow}) {
-    const Date = Moment(show.Date).format("MMM Do YYYY")
     const [editShow, setEditShow] = useState(show)
 
     const removebg = () => {
@@ -41,7 +39,7 @@ function Boardgamedetail({show, updateBG, deleteBG, setShow}) {
             <h2>{show.Player6}</h2>
             <h3>{show.Winner}</h3>
             <p>{show.url}</p>
-            <p>{Date}</p>
+            <p>{show.dated}</p>
         </div>
     )
 }

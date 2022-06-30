@@ -21,7 +21,8 @@ function App() {
       Winner: "",
       url: "",
   });
-  const URL = "https://bgbackend.herokuapp.com/bg/";
+  //const URL = "https://bgbackend.herokuapp.com/bg/";
+  const URL = "http://localhost:4000/bg/";
 
   const getBG = async () => {
       const response = await fetch(URL);
@@ -79,17 +80,16 @@ function App() {
       Player6: "",
       Winner: "",
       url: "",
-      Date: "",
     })
   };
+  
+  function changeCalender() {
+    setDate(null)
+  }
 
   function Display() {
-    function dateconstruct(date){
-      const DATE = Moment(date).format("MMM Do YYYY")
-      return DATE
-  }
     const calenderDate = Moment(date).format("MMM Do YYYY")
-    const dateComp = bg.filter(p => dateconstruct(p.Date) === calenderDate)
+    const dateComp = bg.filter(p => p.dated === calenderDate)
 
     function showCalenderComponents() {
       return dateComp.map((boardgame, i) => {
@@ -124,6 +124,8 @@ function App() {
         onSubmit={onSubmit}
         handleChange={handleChange}
         date={date}
+        setNewBG={setNewBG}
+        newbg={newbg}
         />
       </div>
       <div>
@@ -134,6 +136,7 @@ function App() {
         date={date}
         setDate={setDate}
         reset={getBG}
+        changeCalender={changeCalender}
         />
       </div>
       <div>
