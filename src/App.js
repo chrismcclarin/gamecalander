@@ -7,6 +7,11 @@ import { Container } from './popupform/Container';
 import Boardgamedetail from './components/Boardgamedetail'
 import Moment from 'moment'
 
+// css imports
+import Containers from 'react-bootstrap/Container'
+import Col from 'react-bootstrap/Col'
+import Row from 'react-bootstrap/Row'
+
 function App() {
   const [date, setDate] = useState(new Date());
   const [bg, setBG] = useState(null);
@@ -111,35 +116,39 @@ function App() {
   
   return (
     <div className="App">
-      <h1 className='text-center'>React Calendar</h1>
-      <div className='calendar-container'>
-        <Calendar onChange={setDate} value={date} />
-      </div>
-      {/* <p className='text-center'>
-        <span className='bold'>Selected Date:</span>{' '}
-        {date.toDateString()}
-      </p> */}
-      <div>
-        <Container 
-        triggerText={triggerText} 
-        onSubmit={onSubmit}
-        handleChange={handleChange}
-        date={date}
-        setNewBG={setNewBG}
-        newbg={newbg}
-        />
-      </div>
-      <div>
-        <BGList 
-        bg={bg}
-        deleteBG={deleteBG}
-        updateBG={updateBG}
-        date={date}
-        changeCalender={changeCalender}
-        setNewBG={setNewBG}
-        newbg={newbg}
-        />
-      </div>
+      <Containers fluid>
+      <h1 className='text-center'>Boardgame Calendar</h1>
+        <Row>
+          <Col sm={7}>
+            <div className='calendar-container'>
+              <Calendar onChange={setDate} value={date} />
+            </div>
+          </Col>
+          <Col sm={4}>
+            <div>
+              <Container 
+              triggerText={triggerText} 
+              onSubmit={onSubmit}
+              handleChange={handleChange}
+              date={date}
+              setNewBG={setNewBG}
+              newbg={newbg}
+              />
+            </div>
+            <div>
+              <BGList 
+              bg={bg}
+              deleteBG={deleteBG}
+              updateBG={updateBG}
+              date={date}
+              changeCalender={changeCalender}
+              setNewBG={setNewBG}
+              newbg={newbg}
+              />
+            </div>
+          </Col>
+        </Row>
+      </Containers>
       <div>
       {bg ? Display() : ""}
       </div>
