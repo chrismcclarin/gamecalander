@@ -4,7 +4,7 @@ import 'react-calendar/dist/Calendar.css';
 import './App.css';
 import BGList from './components/BGList'
 import { Container } from './popupform/Container';
-import Boardgamedetail from './components/Boardgamedetail'
+import Boardgamedetail from './components/boardgamedetail'
 import Moment from 'moment'
 
 // css imports
