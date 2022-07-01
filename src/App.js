@@ -12,6 +12,7 @@ import Containers from 'react-bootstrap/Container'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 
+
 function App() {
   const [date, setDate] = useState(new Date());
   const [bg, setBG] = useState(null);
@@ -72,7 +73,7 @@ function App() {
     setNewBG({...newbg, [event.target.id]: event.target.value})
   }
 
-  const triggerText = 'Open form';
+  const triggerText = 'New Boardgame';
   const onSubmit = () => {
     console.log("1")
     createBG(newbg);
@@ -93,23 +94,47 @@ function App() {
     setDate(null)
   }
 
+  const [show, setShow] = useState(null)
+
+  function showComponent (event) {
+      event.preventDefault();
+      const id = bg.find(ele => ele._id === event.target.value)
+      setShow(id)
+      changeCalender()
+  }
+
+  const detailLoaded = () => {
+    return ( 
+          <Boardgamedetail 
+          show={show}
+          updateBG={updateBG}
+          deleteBG={deleteBG}
+          setShow={setShow}
+          bg={bg}
+          setDate={setDate}
+          />
+    )
+  }
+
   function Display() {
     const calenderDate = Moment(date).format("MMM Do YYYY")
-    const dateComp = bg.filter(p => p.dated === calenderDate)
+    const dateComp = bg.filter(p => Moment(p.dated).format("MMM Do YYYY") === calenderDate)
 
     function showCalenderComponents() {
       return dateComp.map((boardgame, i) => {
-              return (
-                <div key={i}>
-              <Boardgamedetail 
-              show={boardgame}
-              updateBG={updateBG}
-              deleteBG={deleteBG} 
-              setShow={setNewBG}
-              />
-              </div>
-              )})}
-    return <div>{(dateComp !== 0) ? showCalenderComponents() : ''}</div>
+        return (
+          <div key={i}>
+            <Boardgamedetail 
+            show={boardgame}
+            updateBG={updateBG}
+            deleteBG={deleteBG} 
+            setShow={setNewBG}
+            bg={bg}
+            setDate={setDate}
+            />
+          </div>
+        )})}
+    return ((dateComp !== 0) ? showCalenderComponents() : '')
   }
 
   
@@ -117,15 +142,15 @@ function App() {
   return (
     <div className="App">
       <Containers fluid>
-      <h1 className='text-center'>Boardgame Calendar</h1>
+      <h1 className='App-header'>Periodic Tabletop</h1>
         <Row>
-          <Col sm={7}>
+          <Col sm={8}>
             <div className='calendar-container'>
               <Calendar onChange={setDate} value={date} />
             </div>
           </Col>
-          <Col sm={4}>
-            <div>
+          <Col sm={3} className="BGList" >
+            <div className="newBGbutton">
               <Container 
               triggerText={triggerText} 
               onSubmit={onSubmit}
@@ -135,23 +160,21 @@ function App() {
               newbg={newbg}
               />
             </div>
-            <div>
+            <div className="d-grid gap-2">
               <BGList 
               bg={bg}
-              deleteBG={deleteBG}
-              updateBG={updateBG}
-              date={date}
-              changeCalender={changeCalender}
-              setNewBG={setNewBG}
-              newbg={newbg}
+              showComponent={showComponent}
               />
             </div>
           </Col>
         </Row>
+        <Row>
+          <Col sm={8} className="d-grid gap-2">
+            {bg ? Display() : ""}
+            {show ? (date ? "" : detailLoaded()) : ""} 
+          </Col>
+        </Row>
       </Containers>
-      <div>
-      {bg ? Display() : ""}
-      </div>
     </div>
   );
 }

@@ -1,54 +1,29 @@
-import Boardgamedetail from './Boardgamedetail'
-import { useState } from 'react';
+import Button from 'react-bootstrap/Button'
 
 function BGList(props) {
-    const [show, setShow] = useState(null)
 
-    function showComponent (event) {
-        event.preventDefault();
-        setShow(props.bg[event.target.value])
-        props.changeCalender()
-    }
     const loaded = () => {
-            return props.bg.map((bg, i) => {
-                return (<div key={bg._id}>
-                <button value={i} onClick={showComponent}>{bg.Name}</button> 
+        const uniqBy = props.bg.filter((value, index, self) =>
+            index === self.findIndex((t) => (
+                t.Name === value.Name
+            ))
+        )
+            return uniqBy.map((boardgame, i) => {
+                return (<div key={boardgame._id} className="d-grid">
+                <Button variant="secondary" value={boardgame._id} onClick={props.showComponent}>{boardgame.Name}</Button>{' '}
                 </div>
                 )
             })
     }
 
-    const detailLoaded = () => {
-        return (
-            <div>
-            <Boardgamedetail 
-            show={show}
-            updateBG={props.updateBG}
-            deleteBG={props.deleteBG}
-            setShow={setShow}
-            date={props.date}
-            setNewBG={props.setNewBG}
-            newbg={props.newbg}
-            />
-            </div>)
-
-    }
 
     const loading = () => {
         return <h1>Loading...</h1>;
     };  
 
 
-    return (
-        <div>
-            <div>
-                {props.bg ? loaded() : loading()}
-            </div>
-            <div>
-                {show ? (props.date ? "" : detailLoaded()) : ""} 
-            </div>
-        </div>
-)
+    return (props.bg ? loaded() : loading())
+
 }
 
 export default BGList;

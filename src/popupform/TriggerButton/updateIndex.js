@@ -10,7 +10,7 @@ const Trigger = ({ triggerText, buttonRef, showModal}) => {
 
   return (
     <button
-      className="btn btn-lg btn-danger center modal-button"
+      className="btn btn-sm btn-warning center modal-button"
       ref={buttonRef}
       onClick={click}
     >

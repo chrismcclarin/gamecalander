@@ -1,7 +1,7 @@
 import React from 'react';
 import Moment from 'moment'
 
-export const Form = ({ onSubmit, closeModal, handleChange, date, setNewBG, newbg }) => {
+export const Form = ({ onSubmit, closeModal, handleChange, date}) => {
 
   const Dateline = Moment(date).format("MMM Do YYYY")
 

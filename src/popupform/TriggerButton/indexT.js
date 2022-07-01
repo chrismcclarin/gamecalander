@@ -2,7 +2,8 @@ import React from 'react';
 import Moment from 'moment'
 
 const Trigger = ({ triggerText, buttonRef, showModal, date, setNewBG, newbg }) => {
-  const Dateline = Moment(date).format("MMM Do YYYY")
+  const Dateline = Moment(date).toString()
+
   const newDate = (newbg) => {
     setNewBG({...newbg, dated: Dateline})
   }

@@ -5,22 +5,13 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color:rgb(0, 255, 221);
+  background-color:#1c1c1c;
 }
 
 .calendar-container {
-  margin-left:50px
+  margin-left:115px;
+  margin-bottom: 50px
 }
-.react-calendar { 
-  width: 400px;
-  max-width: 100%;
-  background-color: #fff;
-  color: #222;
-  border-radius: 8px;
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
-  font-family: Arial, Helvetica, sans-serif;
-  line-height: 1.125em;
- }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
