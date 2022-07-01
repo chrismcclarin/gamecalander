@@ -34,6 +34,7 @@ export const Form = ({ onSubmit, closeModal, handleChange, date, setNewBG, newbg
             type="text"
             className="form-control"
             id="Player1"
+            defaultValue="Evan"
             onChange={handleChange}
           />
           <label htmlFor="player2">Player 2</label>
@@ -41,6 +42,7 @@ export const Form = ({ onSubmit, closeModal, handleChange, date, setNewBG, newbg
             type="text"
             className="form-control"
             id="Player2"
+            defaultValue="Chris"
             onChange={handleChange}
           />
           <label htmlFor="player3">Player 3</label>
@@ -48,6 +50,7 @@ export const Form = ({ onSubmit, closeModal, handleChange, date, setNewBG, newbg
             type="text"
             className="form-control"
             id="Player3"
+            defaultValue="Kevin"
             onChange={handleChange}
           />
           <label htmlFor="player4">Player 4</label>
@@ -55,6 +58,7 @@ export const Form = ({ onSubmit, closeModal, handleChange, date, setNewBG, newbg
             type="text"
             className="form-control"
             id="Player4"
+            defaultValue="Eric"
             onChange={handleChange}
           />
           <label htmlFor="player5">Player 5</label>

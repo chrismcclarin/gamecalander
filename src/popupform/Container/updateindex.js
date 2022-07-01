@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import Modal from '../Modal/updateindex.js';
-import TriggerButton from '../TriggerButton/indexT';
+import TriggerButton from '../TriggerButton/updateIndex';
 export class Container extends Component {
   state = { isShown: false };
   showModal = () => {
@@ -10,6 +10,7 @@ export class Container extends Component {
       this.closeButton.focus();
     });
     this.toggleScrollLock();
+    this.props.setEditShow(this.props.show)
   };
   closeModal = () => {
     this.setState({ isShown: false });
@@ -47,6 +48,7 @@ export class Container extends Component {
             onKeyDown={this.onKeyDown}
             onClickOutside={this.onClickOutside}
             show={this.props.show}
+            editShow={this.props.editShow}
           />
         ) : null}
       </React.Fragment>

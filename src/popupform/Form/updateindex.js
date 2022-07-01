@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-export const Form = ({ onSubmit, closeModal, handleChange, show }) => {
+export const Form = ({ onSubmit, closeModal, handleChange, show, editShow}) => {
 
   const duoSubmit = (event) => {
     event.preventDefault(event)

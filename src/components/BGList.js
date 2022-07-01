@@ -26,6 +26,9 @@ function BGList(props) {
             updateBG={props.updateBG}
             deleteBG={props.deleteBG}
             setShow={setShow}
+            date={props.date}
+            setNewBG={props.setNewBG}
+            newbg={props.newbg}
             />
             </div>)
 

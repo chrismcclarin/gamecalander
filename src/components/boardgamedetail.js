@@ -27,6 +27,7 @@ function Boardgamedetail({show, updateBG, deleteBG, setShow}) {
                 onSubmit={changebg}
                 handleChange={updateChange}
                 show={show}
+                setEditShow={setEditShow}
                 />
             </div>
             <button onClick={removebg} id="delete">Delete</button>

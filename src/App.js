@@ -12,17 +12,17 @@ function App() {
   const [bg, setBG] = useState(null);
   const [newbg, setNewBG] = useState({
       Name: "",
-      Player1: "",
-      Player2: "",
-      Player3: "",
-      Player4: "",
+      Player1: "Evan",
+      Player2: "Chris",
+      Player3: "Kevin",
+      Player4: "Eric",
       Player5: "",
       Player6: "",
       Winner: "",
       url: "",
   });
-  //const URL = "https://bgbackend.herokuapp.com/bg/";
-  const URL = "http://localhost:4000/bg/";
+  const URL = "https://bgbackend.herokuapp.com/bg/";
+  //const URL = "http://localhost:4000/bg/";
 
   const getBG = async () => {
       const response = await fetch(URL);
@@ -69,13 +69,14 @@ function App() {
 
   const triggerText = 'Open form';
   const onSubmit = () => {
+    console.log("1")
     createBG(newbg);
     setNewBG({
       Name: "",
-      Player1: "",
-      Player2: "",
-      Player3: "",
-      Player4: "",
+      Player1: "Evan",
+      Player2: "Chris",
+      Player3: "Kevin",
+      Player4: "Eric",
       Player5: "",
       Player6: "",
       Winner: "",
@@ -134,9 +135,9 @@ function App() {
         deleteBG={deleteBG}
         updateBG={updateBG}
         date={date}
-        setDate={setDate}
-        reset={getBG}
         changeCalender={changeCalender}
+        setNewBG={setNewBG}
+        newbg={newbg}
         />
       </div>
       <div>
