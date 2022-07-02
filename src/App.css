@@ -8,7 +8,8 @@
 }
 .BGList {
   background-color: rgb(58, 58, 58);
-  border-radius: 10%;
+  border-radius: 50px;
+  padding:20px
 }
 
 .App-header {

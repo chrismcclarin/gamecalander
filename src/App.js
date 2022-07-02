@@ -4,7 +4,7 @@ import 'react-calendar/dist/Calendar.css';
 import './App.css';
 import BGList from './components/BGList'
 import { Container } from './popupform/Container';
-import Boardgamedetail from './components/boardgamedetail'
+import Boardgamedetail from './components/Boardgamedetail'
 import Moment from 'moment'
 
 // css imports
@@ -148,8 +148,12 @@ function App() {
             <div className='calendar-container'>
               <Calendar onChange={setDate} value={date} />
             </div>
+            <div sm={8} className="d-grid gap-2">
+              {bg ? Display() : ""}
+              {show ? (date ? "" : detailLoaded()) : ""} 
+            </div>
           </Col>
-          <Col sm={3} className="BGList" >
+          <Col sm={3}  >
             <div className="newBGbutton">
               <Container 
               triggerText={triggerText} 
@@ -160,18 +164,12 @@ function App() {
               newbg={newbg}
               />
             </div>
-            <div className="d-grid gap-2">
+            <div className="BGList d-grid gap-2">
               <BGList 
               bg={bg}
               showComponent={showComponent}
               />
             </div>
-          </Col>
-        </Row>
-        <Row>
-          <Col sm={8} className="d-grid gap-2">
-            {bg ? Display() : ""}
-            {show ? (date ? "" : detailLoaded()) : ""} 
           </Col>
         </Row>
       </Containers>
@@ -180,3 +178,20 @@ function App() {
 }
 
 export default App;
+
+//suggestions box
+
+//Who picked
+//General section block of text
+//Score per player
+//Faction/color/who played what
+//winner checkbox instead of typing in the winning player(add group win as well)
+//New player checkbox
+//Double date replaced with single date with number of times played per date.
+//search by winner, player, who picked
+//organize BGlist as alphabetical
+//list players in order of score, assuming there is one.
+//possible add comment section to talk about our opinions of the game.(hot takes)
+//add an outline around the calender
+//highlights a date with entries in it
+//adding in a Themes section 
