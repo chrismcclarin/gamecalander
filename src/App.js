@@ -17,22 +17,69 @@ function App() {
   const [date, setDate] = useState(new Date());
   const [bg, setBG] = useState(null);
   const [newbg, setNewBG] = useState({
-      Name: "",
-      Player1: "Evan",
-      Player2: "Chris",
-      Player3: "Kevin",
-      Player4: "Eric",
-      Player5: "",
-      Player6: "",
-      Winner: "",
-      url: "",
+    Name: "",
+    Players: [
+        {
+            Player: "Evan",
+            Winner: false,
+            New: false,
+            Score: 0,
+            Faction: "",
+            Picked: false
+        },
+        {
+            Player: "Chris",
+            Winner: false,
+            New: false,
+            Score: 0,
+            Faction: "",
+            Picked: false
+        },
+        {
+            Player: "Kevin",
+            Winner: false,
+            New: false,
+            Score: 0,
+            Faction: "",
+            Picked: false
+        },
+        {
+            Player: "Eric",
+            Winner: false,
+            New: false,
+            Score: 0,
+            Faction: "",
+            Picked: false
+        },
+        {
+            Player: "",
+            Winner: false,
+            New: false,
+            Score: 0,
+            Faction: "",
+            Picked: false
+        },
+        {
+            Player: "",
+            Winner: false,
+            New: false,
+            Score: 0,
+            Faction: "",
+            Picked: false
+        },
+    ],
+    GameComments: "",
+    url: "",
+    theme: "",
+    dated: ""
   });
-  const URL = "https://bgbackend.herokuapp.com/bg/";
-  //const URL = "http://localhost:4000/bg/";
+  //const URL = "https://bgbackend.herokuapp.com/bg/";
+  const URL = "http://localhost:4000/bg/";
 
   const getBG = async () => {
       const response = await fetch(URL);
       const data = await response.json();
+      console.log(data)
       setBG(data);
   };
 
@@ -73,20 +120,71 @@ function App() {
     setNewBG({...newbg, [event.target.id]: event.target.value})
   }
 
+  const handlePlayerChange = (event, index) => {
+    console.log(event.target.id)
+  }
+
   const triggerText = 'New Boardgame';
+
   const onSubmit = () => {
-    console.log("1")
+    console.log(newbg)
     createBG(newbg);
     setNewBG({
       Name: "",
-      Player1: "Evan",
-      Player2: "Chris",
-      Player3: "Kevin",
-      Player4: "Eric",
-      Player5: "",
-      Player6: "",
-      Winner: "",
+      Players: [
+        {
+            Player: "Evan",
+            Winner: false,
+            New: false,
+            Score: 0,
+            Faction: "",
+            Picked: false
+        },
+        {
+            Player: "Chris",
+            Winner: false,
+            New: false,
+            Score: 0,
+            Faction: "",
+            Picked: false
+        },
+        {
+            Player: "Kevin",
+            Winner: false,
+            New: false,
+            Score: 0,
+            Faction: "",
+            Picked: false
+        },
+        {
+            Player: "Eric",
+            Winner: false,
+            New: false,
+            Score: 0,
+            Faction: "",
+            Picked: false
+        },
+        {
+            Player: "",
+            Winner: false,
+            New: false,
+            Score: 0,
+            Faction: "",
+            Picked: false
+        },
+        {
+            Player: "",
+            Winner: false,
+            New: false,
+            Score: 0,
+            Faction: "",
+            Picked: false
+        },
+      ],
+      GameComments: "",
       url: "",
+      theme: "",
+      dated: ""
     })
   };
   
@@ -162,6 +260,7 @@ function App() {
               date={date}
               setNewBG={setNewBG}
               newbg={newbg}
+              handlePlayerChange={handlePlayerChange}
               />
             </div>
             <div className="BGList d-grid gap-2">
@@ -181,17 +280,24 @@ export default App;
 
 //suggestions box
 
+//Schema changes:
 //Who picked
 //General section block of text
 //Score per player
 //Faction/color/who played what
+//adding in a Themes section
 //winner checkbox instead of typing in the winning player(add group win as well)
 //New player checkbox
+
+//Card stuff:
 //Double date replaced with single date with number of times played per date.
-//search by winner, player, who picked
-//organize BGlist as alphabetical
 //list players in order of score, assuming there is one.
 //possible add comment section to talk about our opinions of the game.(hot takes)
+
+//BGList stuff:
+//search by winner, player, who picked
+//organize BGlist as alphabetical
+
+//Calender Stuff:
 //add an outline around the calender
 //highlights a date with entries in it
-//adding in a Themes section 

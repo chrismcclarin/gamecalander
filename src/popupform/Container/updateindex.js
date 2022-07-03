@@ -37,6 +37,7 @@ export class Container extends Component {
           showModal={this.showModal}
           buttonRef={(n) => (this.TriggerButton = n)}
           triggerText={this.props.triggerText}
+          show={this.props.show}
         />
         {this.state.isShown ? (
           <Modal

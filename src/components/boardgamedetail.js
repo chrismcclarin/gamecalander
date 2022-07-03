@@ -26,10 +26,99 @@ function Boardgamedetail({show, updateBG, deleteBG, setShow, bg, setDate}) {
     }
     const triggerText = 'Update';
 
-    function hideExtraPlayers(player) {
-        if (player != false) {
-            return <ListGroup.Item>{player}</ListGroup.Item>
+    function showSVGCheck(index) {
+        let checks = [show.Players[index].Winner, show.Players[index].New, show.Players[index].Picked]
+        return checks.map((data) => {
+        if (data === false) {
+            return (
+                <Col>
+                <svg key={Math.floor(Math.random() * 100)} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-circle" viewBox="0 0 16 16">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                </svg>
+                </Col>
+            )} else {
+                return (
+                    <Col>
+                    <svg key={Math.floor(Math.random() * 100)} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                    </svg>
+                    </Col>
+                )
+            }
+        })
+    }
+
+    function hideExtraPlayers(index) {
+        if (show.Players[index].Player != false) {
+            if (show.Players[0].Score !== 0) {
+                return (
+                <ListGroup.Item key={Math.floor(Math.random() * 100)}>
+                    <Row>
+                        <Col>
+                            {show.Players[index].Player}
+                        </Col>
+                        <Col>
+                            {show.Players[index].Score}
+                        </Col>
+                        <Col>
+                            {show.Players[index].Faction}
+                        </Col>
+                            {showSVGCheck(index)}
+                    </Row>
+                </ListGroup.Item>
+                )
+            } else {
+                return (
+                    <ListGroup.Item key={Math.floor(Math.random() * 100)}>
+                        <Row>
+                            <Col>
+                                {show.Players[index].Player}
+                            </Col>
+                            <Col>
+                                {show.Players[index].Faction}
+                            </Col>
+                                {showSVGCheck(index)}
+                        </Row>
+                    </ListGroup.Item>
+                )
+            }
         }
+    }
+
+    function playerTitle() {
+        let titles = ["Players", "Score", "Faction", "New", "Winner", "Picked"]
+        let noScoreTitles = ["Players", "Faction", "New", "Winner", "Picked"]
+        if (show.Players[0].Score !== 0){
+            return titles.map(data => {
+                return (
+                    <Col>
+                        <Card.Title>{data}</Card.Title>
+                    </Col>
+                )
+            })
+        } else {
+            return noScoreTitles.map(data => {
+                return (
+                    <Col>
+                        <Card.Title>{data}</Card.Title>
+                    </Col>
+                )
+            })
+        }
+    }
+
+    function players() {
+        let list = show.Players.sort((a, b) => {
+            return b.Score - a.Score;
+        })
+        if (show.Players[0].Score !== 0){
+            return list.map((a, index) => {
+                return hideExtraPlayers(index)
+            })
+        } else {
+            return show.Players.map((a, index) => {
+                return hideExtraPlayers(index)
+        })}
     }
     const timesPlayed = bg.filter((value) => {
         return value.Name===show.Name
@@ -38,7 +127,7 @@ function Boardgamedetail({show, updateBG, deleteBG, setShow, bg, setDate}) {
         const time = Moment(show.dated).format("MMM Do YYYY")
         return time
     }
-
+    
     function timesListed() {
         return (timesPlayed.map(tp => {
             function dateClick(event) {
@@ -64,34 +153,37 @@ function Boardgamedetail({show, updateBG, deleteBG, setShow, bg, setDate}) {
     return (
         <Card bg="secondary" text={'Secondary'.toLowerCase() === 'light' ? 'dark' : 'white'}>
             <Card.Header>
-                <Containers fluid>
-                    <Row>
-                        <Col><h2>{show.Name}</h2></Col>
-                        <Col className="text-end align-self-end">Times Played: {timesPlayed.length}</Col>
-                    </Row>
-                    <Row>
-                        <Col><Card.Link target="_blank" href={show.url}>BGG Link</Card.Link></Col>
-                        <Col className="text-end align-self-end">{readTime()}</Col>
-                    </Row>
-                </Containers>
-            </Card.Header>
-            <Card.Body>
-                <Containers fluid>
                     <Row>
                         <Col>
-                            <Card.Title>Players:</Card.Title>
-                            <ListGroup>
-                                {hideExtraPlayers(show.Player1)}
-                                {hideExtraPlayers(show.Player2)}
-                                {hideExtraPlayers(show.Player3)}
-                                {hideExtraPlayers(show.Player4)}
-                                {hideExtraPlayers(show.Player5)}
-                                {hideExtraPlayers(show.Player6)}
-                            </ListGroup>
+                            <h1>{show.Name}</h1>
+                            {show.theme !== "" ? <Card.Subtitle>Theme: {show.theme}</Card.Subtitle> : null }
+                        </Col>
+                        <Col className="text-end align-self-end">
+                            <Card.Link target="_blank" href={show.url}>BGG Link</Card.Link>
+                            <div>Times Played: {timesPlayed.length}</div>
+                            <div>{readTime()}</div>
+                        </Col>
+                    </Row>
+            </Card.Header>
+            <Card.Body>
+                    <Row>
+                        {playerTitle()}
+                    </Row>
+                    <Row>
+                        <Col>
+                        <ListGroup>
+                            {players()}
+                        </ListGroup>
+                        </Col>
+                    </Row>
+                    <br />
+                    <Row>
+                        <Col>
+                        <Card.Title>Game Information</Card.Title>
+                        <p id="gamecomments">{show.GameComments}</p>
                         </Col>
                         <Col>
                             <Stack gap={5}>
-                                <Card.Title className="text-end">Winner: {show.Winner}</Card.Title>
                                 <Card.Title>Dates Played:</Card.Title>
                             </Stack>
                             <ListGroup>
@@ -114,7 +206,6 @@ function Boardgamedetail({show, updateBG, deleteBG, setShow, bg, setDate}) {
                             <button className="btn btn-sm btn-danger center modal-button" onClick={removebg} id="delete">Delete</button>
                         </Col>
                     </Row>
-                </Containers>
             </Card.Body>
         </Card>
     )
