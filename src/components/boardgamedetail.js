@@ -28,8 +28,7 @@ function Boardgamedetail({show, updateBG, deleteBG, setShow, bg, setDate}) {
     const triggerText = 'Update';
 
     function showSVGCheck(index) {
-
-        let checks = [show.Players[index].Winner, show.Players[index].New, show.Players[index].Picked]
+        let checks = [show.Players[index].New, show.Players[index].Picked]
         return checks.map((data) => {
         if (data === false) {
             return (
@@ -50,6 +49,33 @@ function Boardgamedetail({show, updateBG, deleteBG, setShow, bg, setDate}) {
         })
     }
 
+    function winorGroupWin(index) {
+        if (show.Groupwin === true) {
+            return (
+                <Col>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                    </svg>
+                </Col>
+            )
+        } else if (show.Players[index].Winner === true) {
+            return (
+                <Col>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                    </svg>
+                </Col>
+            )} else {
+                return (
+                    <Col>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-circle" viewBox="0 0 16 16">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                </svg>
+                </Col>
+                )
+            }
+        }
+
     function hideExtraPlayers(index) {
         if (show.Players[index].Player != false) {
             if (show.Players[0].Score !== 0) {
@@ -65,7 +91,8 @@ function Boardgamedetail({show, updateBG, deleteBG, setShow, bg, setDate}) {
                         <Col>
                             {show.Players[index].Faction}
                         </Col>
-                            {showSVGCheck(index)}
+                        {winorGroupWin(index)}
+                        {showSVGCheck(index)}
                     </Row>
                 </ListGroup.Item>
                 )
@@ -79,7 +106,8 @@ function Boardgamedetail({show, updateBG, deleteBG, setShow, bg, setDate}) {
                             <Col>
                                 {show.Players[index].Faction}
                             </Col>
-                                {showSVGCheck(index)}
+                            {winorGroupWin(index)}
+                            {showSVGCheck(index)}
                         </Row>
                     </ListGroup.Item>
                 )
@@ -88,8 +116,8 @@ function Boardgamedetail({show, updateBG, deleteBG, setShow, bg, setDate}) {
     }
 
     function playerTitle() {
-        let titles = ["Players", "Score", "Faction", "New", "Winner", "Picked"]
-        let noScoreTitles = ["Players", "Faction", "New", "Winner", "Picked"]
+        let titles = ["Players", "Score", "Faction", "Winner", "New", "Picked"]
+        let noScoreTitles = ["Players", "Faction", "Winner", "New", "Picked"]
         if (show.Players[0].Score !== 0){
             return titles.map((data, index) => {
                 return (
@@ -109,7 +137,7 @@ function Boardgamedetail({show, updateBG, deleteBG, setShow, bg, setDate}) {
         }
     }
 
-    function players() {
+    function playerSort() {
         let list = show.Players.sort((a, b) => {
             return b.Score - a.Score;
         })
@@ -174,7 +202,7 @@ function Boardgamedetail({show, updateBG, deleteBG, setShow, bg, setDate}) {
                     <Row>
                         <Col>
                         <ListGroup>
-                            {players()}
+                            {playerSort()}
                         </ListGroup>
                         </Col>
                     </Row>
