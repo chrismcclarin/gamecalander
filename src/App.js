@@ -218,7 +218,7 @@ function App() {
 
   function Display() {
     const calenderDate = Moment(date).format("MMM Do YYYY")
-    const dateComp = bg.filter(p => Moment(p.dated).format("MMM Do YYYY") === calenderDate)
+    const dateComp = bg.filter(p => Moment(new Date(p.dated)).format("MMM Do YYYY") === calenderDate)
 
     function showCalenderComponents() {
       return dateComp.map((boardgame, i) => {

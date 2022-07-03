@@ -126,7 +126,7 @@ function Boardgamedetail({show, updateBG, deleteBG, setShow, bg, setDate}) {
         return value.Name===show.Name
     })
     function readTime() {
-        const time = Moment(show.dated).format("MMM Do YYYY")
+        const time = Moment(new Date(show.dated)).format("MMM Do YYYY")
         return time
     }
 
@@ -134,10 +134,10 @@ function Boardgamedetail({show, updateBG, deleteBG, setShow, bg, setDate}) {
         return (timesPlayed.map(tp => {
             function dateClick(event) {
                 event.preventDefault(event);
-                setDate(new Date(tp.dated))
+                setDate(tp.dated)
             }
             function readDate() {
-                const time = Moment(tp.dated).format("MMM Do YYYY")
+                const time = Moment(new Date(tp.dated)).format("MMM Do YYYY")
                 return time
             }
             
