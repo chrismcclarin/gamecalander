@@ -12,7 +12,7 @@ export const Form = ({onSubmit, closeModal, handleChange, date, newbg, setNewBG}
   }
 
   return (
-    <form onSubmit={duoSubmit}>
+    <form className="form" onSubmit={duoSubmit}>
       <div className="col-sm-11">
         <label htmlFor="name">Game Name</label>
         <input className="form-control"  value={newbg.Name} id="Name" onChange={handleChange} />
@@ -135,7 +135,7 @@ export const Form = ({onSubmit, closeModal, handleChange, date, newbg, setNewBG}
           <br />
           <label htmlFor="dated">Date : {Dateline}</label>
       </div>
-      <div className="form-group">
+      <div className="form-group formsubmitbtn">
         <button className="col-sm-11 btn btn-primary" type="submit">
           Submit
         </button>
