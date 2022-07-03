@@ -8,7 +8,10 @@ function BGList(props) {
                 t.Name === value.Name
             ))
         )
-            return uniqBy.map((boardgame, i) => {
+
+        const sortUniqBy = uniqBy.sort((a, b) => a.Name.localeCompare(b.Name))
+
+            return sortUniqBy.map((boardgame, i) => {
                 return (<div key={boardgame._id} className="d-grid">
                 <Button variant="secondary" value={boardgame._id} onClick={props.showComponent}>{boardgame.Name}</Button>{' '}
                 </div>

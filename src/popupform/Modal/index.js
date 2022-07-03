@@ -12,7 +12,7 @@ export const Modal = ({
   handleChange,
   date,
   setNewBG,
-  newbg
+  newbg,
 }) => {
   return ReactDOM.createPortal(
     <FocusTrap>

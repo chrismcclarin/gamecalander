@@ -1,14 +1,12 @@
 import Calendar from 'react-calendar';
 import { useState, useEffect } from 'react';
-import 'react-calendar/dist/Calendar.css';
 import './App.css';
 import BGList from './components/BGList'
 import { Container } from './popupform/Container';
 import Boardgamedetail from './components/Boardgamedetail'
 import Moment from 'moment'
 
-// css imports
-import Containers from 'react-bootstrap/Container'
+// bootstrap css imports
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 
@@ -17,22 +15,70 @@ function App() {
   const [date, setDate] = useState(new Date());
   const [bg, setBG] = useState(null);
   const [newbg, setNewBG] = useState({
-      Name: "",
-      Player1: "Evan",
-      Player2: "Chris",
-      Player3: "Kevin",
-      Player4: "Eric",
-      Player5: "",
-      Player6: "",
-      Winner: "",
-      url: "",
+    Name: "",
+    Players: [
+        {
+            Player: "Evan",
+            Winner: false,
+            New: false,
+            Score: 0,
+            Faction: "",
+            Picked: false
+        },
+        {
+            Player: "Chris",
+            Winner: false,
+            New: false,
+            Score: 0,
+            Faction: "",
+            Picked: false
+        },
+        {
+            Player: "Kevin",
+            Winner: false,
+            New: false,
+            Score: 0,
+            Faction: "",
+            Picked: false
+        },
+        {
+            Player: "Eric",
+            Winner: false,
+            New: false,
+            Score: 0,
+            Faction: "",
+            Picked: false
+        },
+        {
+            Player: "",
+            Winner: false,
+            New: false,
+            Score: 0,
+            Faction: "",
+            Picked: false
+        },
+        {
+            Player: "",
+            Winner: false,
+            New: false,
+            Score: 0,
+            Faction: "",
+            Picked: false
+        },
+    ],
+    Groupwin: false,
+    GameComments: "",
+    url: "",
+    theme: "",
+    dated: ""
   });
   const URL = "https://bgbackend.herokuapp.com/bg/";
-  //const URL = "http://localhost:4000/bg/";
+  // const URL = "http://localhost:4000/bg/";
 
   const getBG = async () => {
       const response = await fetch(URL);
       const data = await response.json();
+      console.log(data)
       setBG(data);
   };
 
@@ -74,19 +120,67 @@ function App() {
   }
 
   const triggerText = 'New Boardgame';
+
   const onSubmit = () => {
-    console.log("1")
+    console.log(newbg)
     createBG(newbg);
     setNewBG({
       Name: "",
-      Player1: "Evan",
-      Player2: "Chris",
-      Player3: "Kevin",
-      Player4: "Eric",
-      Player5: "",
-      Player6: "",
-      Winner: "",
+      Players: [
+        {
+            Player: "Evan",
+            Winner: false,
+            New: false,
+            Score: 0,
+            Faction: "",
+            Picked: false
+        },
+        {
+            Player: "Chris",
+            Winner: false,
+            New: false,
+            Score: 0,
+            Faction: "",
+            Picked: false
+        },
+        {
+            Player: "Kevin",
+            Winner: false,
+            New: false,
+            Score: 0,
+            Faction: "",
+            Picked: false
+        },
+        {
+            Player: "Eric",
+            Winner: false,
+            New: false,
+            Score: 0,
+            Faction: "",
+            Picked: false
+        },
+        {
+            Player: "",
+            Winner: false,
+            New: false,
+            Score: 0,
+            Faction: "",
+            Picked: false
+        },
+        {
+            Player: "",
+            Winner: false,
+            New: false,
+            Score: 0,
+            Faction: "",
+            Picked: false
+        },
+      ],
+      Groupwin: false,
+      GameComments: "",
       url: "",
+      theme: "",
+      dated: ""
     })
   };
   
@@ -112,13 +206,14 @@ function App() {
           setShow={setShow}
           bg={bg}
           setDate={setDate}
+          date={date}
           />
     )
   }
 
   function Display() {
     const calenderDate = Moment(date).format("MMM Do YYYY")
-    const dateComp = bg.filter(p => Moment(p.dated).format("MMM Do YYYY") === calenderDate)
+    const dateComp = bg.filter(p => Moment(new Date(p.dated)).format("MMM Do YYYY") === calenderDate)
 
     function showCalenderComponents() {
       return dateComp.map((boardgame, i) => {
@@ -128,9 +223,10 @@ function App() {
             show={boardgame}
             updateBG={updateBG}
             deleteBG={deleteBG} 
-            setShow={setNewBG}
             bg={bg}
             setDate={setDate}
+            date={date}
+            setShow={setShow}
             />
           </div>
         )})}
@@ -141,12 +237,13 @@ function App() {
   
   return (
     <div className="App">
-      <Containers fluid>
       <h1 className='App-header'>Periodic Tabletop</h1>
         <Row>
           <Col sm={8}>
             <div className='calendar-container'>
+              <div className='calendar-cushion'>
               <Calendar onChange={setDate} value={date} />
+              </div>
             </div>
             <div sm={8} className="d-grid gap-2">
               {bg ? Display() : ""}
@@ -172,7 +269,6 @@ function App() {
             </div>
           </Col>
         </Row>
-      </Containers>
     </div>
   );
 }
@@ -181,17 +277,9 @@ export default App;
 
 //suggestions box
 
-//Who picked
-//General section block of text
-//Score per player
-//Faction/color/who played what
-//winner checkbox instead of typing in the winning player(add group win as well)
-//New player checkbox
-//Double date replaced with single date with number of times played per date.
-//search by winner, player, who picked
-//organize BGlist as alphabetical
-//list players in order of score, assuming there is one.
+//Card stuff:
 //possible add comment section to talk about our opinions of the game.(hot takes)
-//add an outline around the calender
-//highlights a date with entries in it
-//adding in a Themes section 
+
+//BGList stuff:
+//search by winner, player, who picked
+
