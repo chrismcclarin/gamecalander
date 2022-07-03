@@ -1,6 +1,5 @@
 import Calendar from 'react-calendar';
 import { useState, useEffect } from 'react';
-import 'react-calendar/dist/Calendar.css';
 import './App.css';
 import BGList from './components/BGList'
 import { Container } from './popupform/Container';
@@ -243,12 +242,13 @@ function App() {
   
   return (
     <div className="App">
-      <Containers fluid>
       <h1 className='App-header'>Periodic Tabletop</h1>
         <Row>
           <Col sm={8}>
             <div className='calendar-container'>
+              <div className='calendar-cushion'>
               <Calendar onChange={setDate} value={date} />
+              </div>
             </div>
             <div sm={8} className="d-grid gap-2">
               {bg ? Display() : ""}
@@ -275,7 +275,6 @@ function App() {
             </div>
           </Col>
         </Row>
-      </Containers>
     </div>
   );
 }
@@ -285,12 +284,8 @@ export default App;
 //suggestions box
 
 //Card stuff:
-//Double date replaced with single date with number of times played per date.
 //possible add comment section to talk about our opinions of the game.(hot takes)
 
 //BGList stuff:
 //search by winner, player, who picked
 
-//Calender Stuff:
-//add an outline around the calender
-//highlights a date with entries in it
