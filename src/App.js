@@ -78,7 +78,6 @@ function App() {
   const getBG = async () => {
       const response = await fetch(URL);
       const data = await response.json();
-      console.log(data)
       setBG(data);
   };
 
@@ -122,7 +121,7 @@ function App() {
   const triggerText = 'New Boardgame';
 
   const onSubmit = () => {
-    console.log(newbg)
+    console.log("1")
     createBG(newbg);
     setNewBG({
       Name: "",
