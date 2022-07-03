@@ -1,15 +1,16 @@
 import Container from '../popupform/Container/updateindex.js';
 import { useState } from 'react';
 import Card from 'react-bootstrap/Card'
-import Containers from 'react-bootstrap/Container'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import ListGroup from 'react-bootstrap/ListGroup'
 import Stack from 'react-bootstrap/Stack'
 import Moment from 'moment'
+import { nanoid } from 'nanoid'
 
 function Boardgamedetail({show, updateBG, deleteBG, setShow, bg, setDate}) {
     const [editShow, setEditShow] = useState(show)
+
 
     const removebg = () => {
         deleteBG(show._id);
@@ -27,19 +28,20 @@ function Boardgamedetail({show, updateBG, deleteBG, setShow, bg, setDate}) {
     const triggerText = 'Update';
 
     function showSVGCheck(index) {
+
         let checks = [show.Players[index].Winner, show.Players[index].New, show.Players[index].Picked]
         return checks.map((data) => {
         if (data === false) {
             return (
-                <Col>
-                <svg key={Math.floor(Math.random() * 100)} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-circle" viewBox="0 0 16 16">
+                <Col key={nanoid()}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-circle" viewBox="0 0 16 16">
                     <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                 </svg>
                 </Col>
             )} else {
                 return (
-                    <Col>
-                    <svg key={Math.floor(Math.random() * 100)} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                    <Col key={nanoid()}>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-check-circle-fill" viewBox="0 0 16 16">
                         <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
                     </svg>
                     </Col>
@@ -52,7 +54,7 @@ function Boardgamedetail({show, updateBG, deleteBG, setShow, bg, setDate}) {
         if (show.Players[index].Player != false) {
             if (show.Players[0].Score !== 0) {
                 return (
-                <ListGroup.Item key={Math.floor(Math.random() * 100)}>
+                <ListGroup.Item key={nanoid()}>
                     <Row>
                         <Col>
                             {show.Players[index].Player}
@@ -69,7 +71,7 @@ function Boardgamedetail({show, updateBG, deleteBG, setShow, bg, setDate}) {
                 )
             } else {
                 return (
-                    <ListGroup.Item key={Math.floor(Math.random() * 100)}>
+                    <ListGroup.Item key={nanoid()}>
                         <Row>
                             <Col>
                                 {show.Players[index].Player}
@@ -89,17 +91,17 @@ function Boardgamedetail({show, updateBG, deleteBG, setShow, bg, setDate}) {
         let titles = ["Players", "Score", "Faction", "New", "Winner", "Picked"]
         let noScoreTitles = ["Players", "Faction", "New", "Winner", "Picked"]
         if (show.Players[0].Score !== 0){
-            return titles.map(data => {
+            return titles.map((data, index) => {
                 return (
-                    <Col>
+                    <Col key={nanoid()}>
                         <Card.Title>{data}</Card.Title>
                     </Col>
                 )
             })
         } else {
-            return noScoreTitles.map(data => {
+            return noScoreTitles.map((data, index) => {
                 return (
-                    <Col>
+                    <Col key={nanoid()}>
                         <Card.Title>{data}</Card.Title>
                     </Col>
                 )
@@ -127,7 +129,7 @@ function Boardgamedetail({show, updateBG, deleteBG, setShow, bg, setDate}) {
         const time = Moment(show.dated).format("MMM Do YYYY")
         return time
     }
-    
+
     function timesListed() {
         return (timesPlayed.map(tp => {
             function dateClick(event) {

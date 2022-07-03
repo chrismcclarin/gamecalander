@@ -33,6 +33,19 @@ export const Form = ({ onSubmit, closeModal, handleChange, date, newbg, setNewBG
           onChange={handleChange}
         />
       </div>
+      <div className="col-sm-3">
+        <label id="spacing" htmlFor="Groupwin">Group Win</label>
+        <input
+        type="checkbox"
+        id="newbg.Groupwin"
+        checked={newbg.Groupwin}
+        onChange={(e) => {
+          newbg.Groupwin = e.target.checked
+          setNewChecked(newbg.Groupwin)
+          setNewBG({...newbg})
+        }}
+        />
+      </div>
       <br />
       <div className="form-group">
         <h4 htmlFor="players">Players</h4>

@@ -68,6 +68,7 @@ function App() {
             Picked: false
         },
     ],
+    Groupwin: false,
     GameComments: "",
     url: "",
     theme: "",
@@ -181,6 +182,7 @@ function App() {
             Picked: false
         },
       ],
+      Groupwin: false,
       GameComments: "",
       url: "",
       theme: "",
@@ -281,13 +283,7 @@ export default App;
 //suggestions box
 
 //Schema changes:
-//Who picked
-//General section block of text
-//Score per player
-//Faction/color/who played what
-//adding in a Themes section
-//winner checkbox instead of typing in the winning player(add group win as well)
-//New player checkbox
+//add group win as well
 
 //Card stuff:
 //Double date replaced with single date with number of times played per date.
