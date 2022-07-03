@@ -274,7 +274,7 @@ function App() {
 
 export default App;
 
-//suggestions box
+//suggestions boxes
 
 //Card stuff:
 //possible add comment section to talk about our opinions of the game.(hot takes)
