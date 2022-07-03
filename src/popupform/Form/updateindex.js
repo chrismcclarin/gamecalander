@@ -19,7 +19,7 @@ export const Form = ({onSubmit, closeModal, handleChange, date, newbg, setNewBG}
       </div>
       <div className="col-sm-11">
         <label htmlFor="name">Theme</label>
-        <input className="form-control" value={newbg.Theme} id="theme" onChange={handleChange} />
+        <input className="form-control" value={newbg.theme} id="theme" onChange={handleChange} />
       </div>
       <div className="col-sm-11">
         <label htmlFor="url">URL</label>
