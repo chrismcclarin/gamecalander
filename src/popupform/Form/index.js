@@ -1,11 +1,7 @@
 import React from 'react';
 import Moment from 'moment'
-import { useState, useEffect } from 'react';
 
 export const Form = ({ onSubmit, closeModal, handleChange, date, newbg, setNewBG}) => {
-  const [newchecked, setNewChecked] = useState(false)
-
-
   const Dateline = Moment(date).format("MMM Do YYYY")
 
   const duoSubmit = (event) => {
@@ -41,7 +37,6 @@ export const Form = ({ onSubmit, closeModal, handleChange, date, newbg, setNewBG
         checked={newbg.Groupwin}
         onChange={(e) => {
           newbg.Groupwin = e.target.checked
-          setNewChecked(newbg.Groupwin)
           setNewBG({...newbg})
         }}
         />
@@ -97,7 +92,6 @@ export const Form = ({ onSubmit, closeModal, handleChange, date, newbg, setNewBG
               checked={data.New}
               onChange={(e) => {
                 data.New = e.target.checked
-                setNewChecked(data.New)
                 setNewBG({...newbg})
               }}
             />
@@ -110,7 +104,6 @@ export const Form = ({ onSubmit, closeModal, handleChange, date, newbg, setNewBG
               checked={data.Winner}
               onChange={(e) => {
                 data.Winner = e.target.checked
-                setNewChecked(data.Winner)
                 setNewBG({...newbg})
               }}
             />
@@ -123,7 +116,6 @@ export const Form = ({ onSubmit, closeModal, handleChange, date, newbg, setNewBG
               checked={data.Picked}
               onChange={(e) => {
                 data.Picked = e.target.checked
-                setNewChecked(data.Picked)
                 setNewBG({...newbg})
               }}
             />

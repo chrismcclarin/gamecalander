@@ -48,8 +48,9 @@ export class Container extends Component {
             closeModal={this.closeModal}
             onKeyDown={this.onKeyDown}
             onClickOutside={this.onClickOutside}
-            show={this.props.show}
-            editShow={this.props.editShow}
+            date={this.props.date}
+            setNewBG={this.props.setNewBG}
+            newbg={this.props.newbg}
           />
         ) : null}
       </React.Fragment>

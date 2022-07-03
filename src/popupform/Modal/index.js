@@ -13,7 +13,6 @@ export const Modal = ({
   date,
   setNewBG,
   newbg,
-  handlePlayerChange
 }) => {
   return ReactDOM.createPortal(
     <FocusTrap>
@@ -49,7 +48,6 @@ export const Modal = ({
             date={date}
             setNewBG={setNewBG}
             newbg={newbg}
-            handlePlayerChange={handlePlayerChange}
             />
           </div>
         </div>

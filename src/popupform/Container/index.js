@@ -50,7 +50,6 @@ export class Container extends Component {
             date={this.props.date}
             setNewBG={this.props.setNewBG}
             newbg={this.props.newbg}
-            handlePlayerChange={this.props.handlePlayerChange}
           />
         ) : null}
       </React.Fragment>

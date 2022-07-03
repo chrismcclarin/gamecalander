@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-const Trigger = ({ triggerText, buttonRef, showModal, show}) => {
+const Trigger = ({ triggerText, buttonRef, showModal}) => {
 
   function click() {
       showModal();

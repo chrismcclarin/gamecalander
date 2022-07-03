@@ -271,6 +271,9 @@ function Boardgamedetail({show, updateBG, deleteBG, setShow, bg, setDate, date})
                             handleChange={updateChange}
                             show={show}
                             setEditShow={setEditShow}
+                            date={date}
+                            setNewBG={setEditShow}
+                            newbg={editShow}
                             />
                         </Col>
                         <Col className="text-end">

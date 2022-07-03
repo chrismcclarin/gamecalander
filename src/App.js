@@ -6,8 +6,7 @@ import { Container } from './popupform/Container';
 import Boardgamedetail from './components/Boardgamedetail'
 import Moment from 'moment'
 
-// css imports
-import Containers from 'react-bootstrap/Container'
+// bootstrap css imports
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 
@@ -73,8 +72,8 @@ function App() {
     theme: "",
     dated: ""
   });
-  //const URL = "https://bgbackend.herokuapp.com/bg/";
-  const URL = "http://localhost:4000/bg/";
+  const URL = "https://bgbackend.herokuapp.com/bg/";
+  // const URL = "http://localhost:4000/bg/";
 
   const getBG = async () => {
       const response = await fetch(URL);
@@ -118,10 +117,6 @@ function App() {
 
   const handleChange = (event) => {
     setNewBG({...newbg, [event.target.id]: event.target.value})
-  }
-
-  const handlePlayerChange = (event, index) => {
-    console.log(event.target.id)
   }
 
   const triggerText = 'New Boardgame';
@@ -228,10 +223,10 @@ function App() {
             show={boardgame}
             updateBG={updateBG}
             deleteBG={deleteBG} 
-            setShow={setNewBG}
             bg={bg}
             setDate={setDate}
             date={date}
+            setShow={setShow}
             />
           </div>
         )})}
@@ -264,7 +259,6 @@ function App() {
               date={date}
               setNewBG={setNewBG}
               newbg={newbg}
-              handlePlayerChange={handlePlayerChange}
               />
             </div>
             <div className="BGList d-grid gap-2">
