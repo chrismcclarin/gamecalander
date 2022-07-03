@@ -8,7 +8,7 @@ import Stack from 'react-bootstrap/Stack'
 import Moment from 'moment'
 import { nanoid } from 'nanoid'
 
-function Boardgamedetail({show, updateBG, deleteBG, setShow, bg, setDate}) {
+function Boardgamedetail({show, updateBG, deleteBG, setShow, bg, setDate, date}) {
     const [editShow, setEditShow] = useState(show)
 
 
@@ -158,25 +158,66 @@ function Boardgamedetail({show, updateBG, deleteBG, setShow, bg, setDate}) {
         return time
     }
 
-    function timesListed() {
-        return (timesPlayed.map(tp => {
+    function timesListed() {        
+        const convert = (arr) => {
+            const res = {};
+            arr.forEach((obj) => {
+                const time = Moment(new Date(obj.dated)).format("MMM Do YYYY")
+                const key = `${obj.Name}${time}`;
+                if (!res[key]) {
+                    res[key] = { ...obj, count: 0 };
+                };
+                res[key].count += 1;
+            });
+        return Object.values(res);
+        };
+
+        const uniqBy = convert(timesPlayed)
+
+        const sortUniqBy = uniqBy.sort((a, b) => a.dated.localeCompare(b.dated))
+
+        return (sortUniqBy.map(tp => {
             function dateClick(event) {
                 event.preventDefault(event);
-                setDate(tp.dated)
+                setDate(new Date(tp.dated))
             }
-            function readDate() {
-                const time = Moment(new Date(tp.dated)).format("MMM Do YYYY")
-                return time
+
+            const time = Moment(new Date(tp.dated)).format("MMM Do YYYY")
+
+            function active() {
+                return (
+                    <ListGroup.Item key={tp._id} active>
+                        <Row>
+                            <Col>
+                                <Card.Link className="carddate" href="#" onClick={dateClick}>
+                                    {time}
+                                </Card.Link>
+                            </Col>
+                            <Col>
+                                <div className="text-end">x{tp.count}</div>
+                            </Col>
+                        </Row>
+                    </ListGroup.Item>
+                )
+            } 
+            function unactive() {
+                return (
+                    <ListGroup.Item key={tp._id}>
+                        <Row>
+                            <Col>
+                                <Card.Link className="carddate" href="#" onClick={dateClick}>
+                                    {time}
+                                </Card.Link>
+                            </Col>
+                            <Col>
+                                <div className="text-end">x{tp.count}</div>
+                            </Col>
+                        </Row>
+                    </ListGroup.Item>
+                )
             }
-            
-            return (
-                <ListGroup.Item key={tp._id}>
-                    <Card.Link onClick={dateClick}>
-                        {readDate()}
-                    </Card.Link>
-                </ListGroup.Item>
-        )}))
-    }
+        return [(Moment(date).format("MMM Do YYYY") === time) ? active() : unactive()]
+    }))}
 
 
 
@@ -189,7 +230,7 @@ function Boardgamedetail({show, updateBG, deleteBG, setShow, bg, setDate}) {
                             {show.theme !== "" ? <Card.Subtitle>Theme: {show.theme}</Card.Subtitle> : null }
                         </Col>
                         <Col className="text-end align-self-end">
-                            <Card.Link target="_blank" href={show.url}>BGG Link</Card.Link>
+                            <Card.Link className="carddate" target="_blank" href={show.url}>BGG Link</Card.Link>
                             <div>Times Played: {timesPlayed.length}</div>
                             <div>{readTime()}</div>
                         </Col>
@@ -208,7 +249,7 @@ function Boardgamedetail({show, updateBG, deleteBG, setShow, bg, setDate}) {
                     </Row>
                     <br />
                     <Row>
-                        <Col>
+                        <Col xs={8}>
                         <Card.Title>Game Information</Card.Title>
                         <p id="gamecomments">{show.GameComments}</p>
                         </Col>

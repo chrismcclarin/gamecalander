@@ -2,6 +2,14 @@
   text-align: left;
 }
 
+.carddate {
+  color:rgb(0, 0, 0)
+}
+.carddate:hover {
+  color:rgb(121, 43, 43)
+}
+
+
 #spacing {
   margin-right:10px
 }

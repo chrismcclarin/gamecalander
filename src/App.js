@@ -212,6 +212,7 @@ function App() {
           setShow={setShow}
           bg={bg}
           setDate={setDate}
+          date={date}
           />
     )
   }
@@ -231,6 +232,7 @@ function App() {
             setShow={setNewBG}
             bg={bg}
             setDate={setDate}
+            date={date}
             />
           </div>
         )})}
@@ -282,17 +284,12 @@ export default App;
 
 //suggestions box
 
-//Schema changes:
-//add group win as well
-
 //Card stuff:
 //Double date replaced with single date with number of times played per date.
-//list players in order of score, assuming there is one.
 //possible add comment section to talk about our opinions of the game.(hot takes)
 
 //BGList stuff:
 //search by winner, player, who picked
-//organize BGlist as alphabetical
 
 //Calender Stuff:
 //add an outline around the calender
