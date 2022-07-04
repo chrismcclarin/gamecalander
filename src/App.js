@@ -72,8 +72,8 @@ function App() {
     theme: "",
     dated: ""
   });
-  const URL = "https://bgbackend.herokuapp.com/bg/";
-  // const URL = "http://localhost:4000/bg/";
+  //const URL = "https://bgbackend.herokuapp.com/bg/";
+  const URL = "http://localhost:4000/bg/";
 
   const getBG = async () => {
       const response = await fetch(URL);
@@ -244,7 +244,7 @@ function App() {
               <Calendar onChange={setDate} value={date} />
               </div>
             </div>
-            <div sm={8} className="d-grid gap-2">
+            <div sm={8} className="scroll d-grid gap-2">
               {bg ? Display() : ""}
               {show ? (date ? "" : detailLoaded()) : ""} 
             </div>
@@ -276,9 +276,18 @@ export default App;
 
 //suggestions box
 
+//css
+//put bglist under calender on the left, while the cards on the right and add a scroll to the list, leaving the calender and new button at top
+
 //Card stuff:
 //possible add comment section to talk about our opinions of the game.(hot takes)
 
 //BGList stuff:
-//search by winner, player, who picked
+//search by winner, player, who picked, most played, theme
 
+//future stuff:
+//sign in for group
+//sign in for individuals, tied to groups
+//connect to bgg Api
+//rating system
+//redo the calender(replace/make my own)
