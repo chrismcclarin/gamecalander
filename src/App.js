@@ -121,7 +121,6 @@ function App() {
   const triggerText = 'New Boardgame';
 
   const onSubmit = () => {
-    console.log("1")
     createBG(newbg);
     setNewBG({
       Name: "",
