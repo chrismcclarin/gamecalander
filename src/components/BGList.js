@@ -15,6 +15,9 @@ function BGList(props) {
             if (optiona === null || optionb === null) {
                 return null
             } 
+            if (optiona === "null" || optionb === "null") {
+                return null
+            } 
             return arr.filter((obj1) => {
                 const one = obj1.Players.filter((obj2) => {
                     return obj2['Player'] === optionb
@@ -32,6 +35,7 @@ function BGList(props) {
                 
             })
     }
+
             return (
                 <div>
                     <Search bg={uniqBy} searchBG={searchBG} setAssorted={setAssorted} />

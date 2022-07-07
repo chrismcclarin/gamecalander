@@ -8,8 +8,9 @@ function SortedList(props) {
             return (
                 <div>
                     {sortUniqBy.map((boardgame) => {
-                        return (<div key={nanoid()} className="d-grid">
-                        <Button variant="secondary" value={boardgame._id} onClick={props.showComponent}>{boardgame.Name}</Button>{' '}
+                        return (
+                        <div key={nanoid()} className="d-grid">
+                            <Button variant="secondary" value={boardgame._id} onClick={props.showComponent}>{boardgame.Name}</Button>{' '}
                         </div>
                         )})}
                 </div>

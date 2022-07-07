@@ -62,9 +62,9 @@ function Search({bg, searchBG, setAssorted}) {
                 </select>)
             }
         }
+        const test = (searchBG(bg, optionA, optionB))
 
-
-        useEffect(() => setAssorted(searchBG(bg, optionA, optionB)), [optionB])
+        useEffect(() => setAssorted(test), [optionA, optionB])
 
         function handleChangePlayer(e) {
             setOptionB(e.target.value)
