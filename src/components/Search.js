@@ -63,7 +63,6 @@ function Search({bg, searchBG, setAssorted}) {
             }
         }
         const test = (searchBG(bg, optionA, optionB))
-
         useEffect(() => setAssorted(test), [optionA, optionB])
 
         function handleChangePlayer(e) {
@@ -86,7 +85,7 @@ return (<div className="text-center">
                             <option value="Winner">Winner</option>
                             <option value="Player">Player</option>
                             <option value="Picked">Who Picked</option>
-                            {/* <option value="Most Played">Most PLayed</option> */}
+                            <option value="Played">Most Played</option>
                             <option value="theme">Theme</option>
                         </select>
                         {Optionslisted()}

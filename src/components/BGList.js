@@ -12,12 +12,31 @@ function BGList(props) {
             )) 
         )
         const searchBG = (arr, optiona, optionb) => {
+            const convert = (arr) => {
+                const res = {};
+                arr.forEach((obj) => {
+                    const key = `${obj.Name}`;
+                    if (!res[key]) {
+                        res[key] = {...obj, count: 0 };
+                    };
+                    res[key].count += 1;
+                });
+            return Object.values(res);
+            };
+
+            const mostPlayed = convert(props.bg)
+            if (optiona === 'Played') {
+                return mostPlayed
+            }
+
             if (optiona === null || optionb === null) {
                 return null
             } 
+            
             if (optiona === "" || optionb === "") {
                 return null
             } 
+
             return arr.filter((obj1) => {
                 const one = obj1.Players.filter((obj2) => {
                     return obj2['Player'] === optionb
