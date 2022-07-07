@@ -15,7 +15,7 @@ function BGList(props) {
             if (optiona === null || optionb === null) {
                 return null
             } 
-            if (optiona === "null" || optionb === "null") {
+            if (optiona === "" || optionb === "") {
                 return null
             } 
             return arr.filter((obj1) => {
@@ -39,7 +39,7 @@ function BGList(props) {
             return (
                 <div>
                     <Search bg={uniqBy} searchBG={searchBG} setAssorted={setAssorted} />
-                    {[assorted === null ? <SortedList uniqBy={uniqBy} /> : <SortedList uniqBy={assorted} />]}
+                    {[assorted === null ? <SortedList uniqBy={uniqBy} showComponent={props.showComponent} /> : <SortedList uniqBy={assorted} showComponent={props.showComponent} />]}
                 </div>
             )
     }

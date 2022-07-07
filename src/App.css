@@ -11,10 +11,13 @@
   margin-top: 20px;
 }
 
-/* Scroll for the Cards -maybe?
-.scroll {
+.labelSort {
+  color:white
+}
+
+/* .scroll {
   overflow-Y: scroll;
-  height: 80vh
+  height: 100vh
 } */
 
 .carddate {
@@ -88,7 +91,7 @@
 }
 
 .react-calendar {
-  width: 500px;
+  width: 400px;
   max-width: 100%;
   background: white;
   border-radius: 5px;

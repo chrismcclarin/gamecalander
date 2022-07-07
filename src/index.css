@@ -8,11 +8,6 @@ body {
   background-color:#1c1c1c;
 }
 
-/* .calendar-container {
-  margin-left:115px;
-  margin-bottom: 50px
-} */
-
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
@@ -26,7 +21,7 @@ code {
 
 .App {
   width: 90%;
-  margin: 2em auto;
+  margin: auto
 }
 
 .modal-cover {

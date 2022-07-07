@@ -4,8 +4,8 @@ import { nanoid } from 'nanoid'
 function Search({bg, searchBG, setAssorted}) {
     const [optionA, setOptionA] = useState(null);
     const [optionB, setOptionB] = useState(null);
-    const [playerDrop, setPlayerDrop] = useState(null);
-    const [themeDrop, setThemeDrop] = useState(null);
+    const [playerDrop, setPlayerDrop] = useState();
+    const [themeDrop, setThemeDrop] = useState();
 
         function nameList() {
             const list = []
@@ -43,7 +43,7 @@ function Search({bg, searchBG, setAssorted}) {
                     handleChangeTheme(e)
                 }}
                     id="player" value={themeDrop} name="Bglist">
-                    <option value="null">- -</option>
+                    <option value="">- -</option>
                     {themeList().map(theme => {
                         return (<option key={nanoid()} value={theme}>{theme}</option>
                     )})}
@@ -55,7 +55,7 @@ function Search({bg, searchBG, setAssorted}) {
                     handleChangePlayer(e)
                 }}
                     id="player" value={playerDrop} name="Bglist">
-                    <option value="null">- -</option>
+                    <option value="">- -</option>
                     {nameList().map(name => {
                         return (<option key={nanoid()} value={name}>{name}</option>
                     )})}
@@ -76,12 +76,13 @@ function Search({bg, searchBG, setAssorted}) {
         }
 
 
-return (<div>
-                        <label htmlFor="sort">Sort By:</label>
+return (<div className="text-center">
+                        <label className="labelSort" htmlFor="sort">Sort By:</label>
+                        <br />
                         <select onChange={(e) => {
                             e.preventDefault(e)
                             setOptionA(e.target.value)}}> 
-                            <option value="null">- -</option>
+                            <option value="">- -</option>
                             <option value="Winner">Winner</option>
                             <option value="Player">Player</option>
                             <option value="Picked">Who Picked</option>

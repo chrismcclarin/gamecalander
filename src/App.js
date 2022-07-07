@@ -72,8 +72,8 @@ function App() {
     theme: "",
     dated: ""
   });
-  //const URL = "https://bgbackend.herokuapp.com/bg/";
-  const URL = "http://localhost:4000/bg/";
+  const URL = "https://bgbackend.herokuapp.com/bg/";
+  // const URL = "http://localhost:4000/bg/";
 
   const getBG = async () => {
       const response = await fetch(URL);
@@ -237,18 +237,12 @@ function App() {
     <div className="App">
       <h1 className='App-header'>Periodic Tabletop</h1>
         <Row>
-          <Col sm={8}>
-            <div className='calendar-container'>
+          <Col sm={4}>
+          <div className='calendar-container'>
               <div className='calendar-cushion'>
               <Calendar onChange={setDate} value={date} />
               </div>
             </div>
-            <div sm={8} className="scroll d-grid gap-2">
-              {bg ? Display() : ""}
-              {show ? (date ? "" : detailLoaded()) : ""} 
-            </div>
-          </Col>
-          <Col sm={3}  >
             <div className="newBGbutton">
               <Container 
               triggerText={triggerText} 
@@ -259,11 +253,17 @@ function App() {
               newbg={newbg}
               />
             </div>
-            <div className="BGList d-grid gap-2">
+            <div className="BGList d-grid gap-3">
               <BGList 
               bg={bg}
               showComponent={showComponent}
               />
+            </div>
+          </Col>
+          <Col sm={{span:6, offset: 1}}>
+            <div sm={7} className="scroll d-grid gap-2">
+              {bg ? Display() : ""}
+              {show ? (date ? "" : detailLoaded()) : ""} 
             </div>
           </Col>
         </Row>
