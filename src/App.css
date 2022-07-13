@@ -11,6 +11,11 @@
   margin-top: 20px;
 }
 
+
+.labelSort {
+  color:white
+}
+
 .carddate {
   color:rgb(0, 0, 0)
 }
@@ -82,7 +87,7 @@
 }
 
 .react-calendar {
-  width: 500px;
+  width: 400px;
   max-width: 100%;
   background: white;
   border-radius: 5px;

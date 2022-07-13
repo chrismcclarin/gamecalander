@@ -121,7 +121,6 @@ function App() {
   const triggerText = 'New Boardgame';
 
   const onSubmit = () => {
-    console.log("1")
     createBG(newbg);
     setNewBG({
       Name: "",
@@ -238,18 +237,12 @@ function App() {
     <div className="App">
       <h1 className='App-header'>Periodic Tabletop</h1>
         <Row>
-          <Col sm={8}>
-            <div className='calendar-container'>
+          <Col sm={4}>
+          <div className='calendar-container'>
               <div className='calendar-cushion'>
               <Calendar onChange={setDate} value={date} />
               </div>
             </div>
-            <div sm={8} className="d-grid gap-2">
-              {bg ? Display() : ""}
-              {show ? (date ? "" : detailLoaded()) : ""} 
-            </div>
-          </Col>
-          <Col sm={3}  >
             <div className="newBGbutton">
               <Container 
               triggerText={triggerText} 
@@ -260,11 +253,17 @@ function App() {
               newbg={newbg}
               />
             </div>
-            <div className="BGList d-grid gap-2">
+            <div className="BGList d-grid gap-3">
               <BGList 
               bg={bg}
               showComponent={showComponent}
               />
+            </div>
+          </Col>
+          <Col sm={{span:6, offset: 1}}>
+            <div sm={7} className="scroll d-grid gap-2">
+              {bg ? Display() : ""}
+              {show ? (date ? "" : detailLoaded()) : ""} 
             </div>
           </Col>
         </Row>
@@ -276,9 +275,18 @@ export default App;
 
 //suggestions boxes
 
+//css
+//put bglist under calender on the left, while the cards on the right and add a scroll to the list, leaving the calender and new button at top
+
 //Card stuff:
 //possible add comment section to talk about our opinions of the game.(hot takes)
 
 //BGList stuff:
-//search by winner, player, who picked
+//search by winner, player, who picked, most played, theme
 
+//future stuff:
+//sign in for group
+//sign in for individuals, tied to groups
+//connect to bgg Api
+//rating system
+//redo the calender(replace/make my own)
