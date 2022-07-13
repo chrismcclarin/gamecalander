@@ -12,12 +12,10 @@ function SortedList(props) {
                     {orderPlayed.map((boardgame) => {
                         return (
                         <div key={nanoid()} className="d-grid">
-                            <Button variant="secondary" value={boardgame._id} onClick={props.showComponent}>
-                                <div className="row">
-                                <span className="col-sm-8">{boardgame.Name}</span> 
-                                <span className="col-sm-1">x{boardgame.count}</span>
-                                </div>
-                                </Button>{' '}
+                            <Button variant="secondary" className="listing" value={boardgame._id} onClick={props.showComponent}>
+                                {boardgame.Name}
+                                <span>x{boardgame.count}</span>
+                                </Button>
                         </div>
                         )})}
                 </Stack>

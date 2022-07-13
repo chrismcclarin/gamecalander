@@ -48,6 +48,14 @@
   padding:20px
 }
 
+.listing {
+  display: flex;
+  flex-direction: row;
+  align-items: right;
+  justify-content: space-between;
+
+}
+
 .App-header {
   display: flex;
   flex-direction: column;
