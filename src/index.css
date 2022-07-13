@@ -62,7 +62,7 @@ code {
 
 ._modal-close {
   position: absolute;
-  top: 0;
+  top: 25px;
   right: 0;
   padding: 0.5em;
   line-height: 1;

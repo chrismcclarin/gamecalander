@@ -273,7 +273,7 @@ function App() {
 
 export default App;
 
-//suggestions box
+//suggestions boxes
 
 //css
 //put bglist under calender on the left, while the cards on the right and add a scroll to the list, leaving the calender and new button at top

@@ -194,7 +194,7 @@ function Boardgamedetail({show, updateBG, deleteBG, setShow, bg, setDate, date})
                                 </Card.Link>
                             </Col>
                             <Col>
-                                <div className="text-end">x{tp.count}</div>
+                                {(tp.count === 1) ? "" : <div className="text-end">x{tp.count}</div>}
                             </Col>
                         </Row>
                     </ListGroup.Item>
@@ -210,7 +210,7 @@ function Boardgamedetail({show, updateBG, deleteBG, setShow, bg, setDate, date})
                                 </Card.Link>
                             </Col>
                             <Col>
-                                <div className="text-end">x{tp.count}</div>
+                                {(tp.count === 1) ? "" : <div className="text-end">x{tp.count}</div>}
                             </Col>
                         </Row>
                     </ListGroup.Item>
