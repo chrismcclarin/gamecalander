@@ -11,7 +11,7 @@ export const Form = ({ onSubmit, closeModal, handleChange, date, newbg, setNewBG
   }
 
   return (
-    <form onSubmit={[newbg ? duoSubmit : null]}>
+    <form onSubmit={duoSubmit}>
       <div className="col-sm-11">
         <label htmlFor="name">Game Name</label>
         <input className="form-control" id="Name" onChange={handleChange} />
