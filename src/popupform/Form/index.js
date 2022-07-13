@@ -6,12 +6,12 @@ export const Form = ({ onSubmit, closeModal, handleChange, date, newbg, setNewBG
 
   const duoSubmit = (event) => {
     event.preventDefault(event)
-    onSubmit();
     closeModal();
+    [newbg ? onSubmit() : null]
   }
 
   return (
-    <form className="form" onSubmit={duoSubmit}>
+    <form onSubmit={duoSubmit}>
       <div className="col-sm-11">
         <label htmlFor="name">Game Name</label>
         <input className="form-control" id="Name" onChange={handleChange} />
@@ -127,11 +127,11 @@ export const Form = ({ onSubmit, closeModal, handleChange, date, newbg, setNewBG
         <div className="col-sm-11">
         <label htmlFor="name">Game Information</label>
         <textarea className="form-control" id="GameComments" onChange={handleChange}></textarea>
-        <br />
       </div>
+          <br />
           <label htmlFor="dated">Date : {Dateline}</label>
       </div>
-      <div className="form-group formsubmitbtn">
+      <div className="form-group">
         <button className="col-sm-11 btn btn-primary" type="submit">
           Submit
         </button>

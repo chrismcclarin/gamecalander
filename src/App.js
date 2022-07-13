@@ -275,14 +275,8 @@ export default App;
 
 //suggestions boxes
 
-//css
-//put bglist under calender on the left, while the cards on the right and add a scroll to the list, leaving the calender and new button at top
-
 //Card stuff:
 //possible add comment section to talk about our opinions of the game.(hot takes)
-
-//BGList stuff:
-//search by winner, player, who picked, most played, theme
 
 //future stuff:
 //sign in for group

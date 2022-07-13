@@ -5,7 +5,7 @@ import Stack from 'react-bootstrap/Stack';
 function SortedList(props) {
     const loaded = () => {
         const sortUniqBy = props.uniqBy.sort((a, b) => a.Name.localeCompare(b.Name))
-        if (props.uniqBy[0].count !== undefined) {
+        if (props.uniqBy[0]?.count !== undefined) {
             const orderPlayed = props.uniqBy.sort((a, b) => {return b.count - a.count})
             return (
                 <Stack className="BGList gap-2">
