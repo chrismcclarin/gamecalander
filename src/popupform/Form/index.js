@@ -7,11 +7,11 @@ export const Form = ({ onSubmit, closeModal, handleChange, date, newbg, setNewBG
   const duoSubmit = (event) => {
     event.preventDefault(event)
     closeModal();
-    [newbg ? onSubmit() : null]
+    onSubmit()
   }
 
   return (
-    <form onSubmit={duoSubmit}>
+    <form onSubmit={[newbg ? duoSubmit : null]}>
       <div className="col-sm-11">
         <label htmlFor="name">Game Name</label>
         <input className="form-control" id="Name" onChange={handleChange} />
