@@ -5,7 +5,7 @@ import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import ListGroup from 'react-bootstrap/ListGroup'
 import Stack from 'react-bootstrap/Stack'
-import Moment from 'moment'
+import * as dayjs from 'dayjs'
 import { nanoid } from 'nanoid'
 
 function Boardgamedetail({show, updateBG, deleteBG, setShow, bg, setDate, date}) {
@@ -154,7 +154,7 @@ function Boardgamedetail({show, updateBG, deleteBG, setShow, bg, setDate, date})
         return value.Name===show.Name
     })
     function readTime() {
-        const time = Moment(new Date(show.dated)).format("MMM Do YYYY")
+        const time = dayjs(new Date(show.dated)).format("MMM D YYYY")
         return time
     }
 
@@ -162,7 +162,7 @@ function Boardgamedetail({show, updateBG, deleteBG, setShow, bg, setDate, date})
         const convert = (arr) => {
             const res = {};
             arr.forEach((obj) => {
-                const time = Moment(new Date(obj.dated)).format("MMM Do YYYY")
+                const time = dayjs(new Date(obj.dated)).format("MMM D YYYY")
                 const key = `${obj.Name}${time}`;
                 if (!res[key]) {
                     res[key] = { ...obj, count: 0 };
@@ -182,7 +182,7 @@ function Boardgamedetail({show, updateBG, deleteBG, setShow, bg, setDate, date})
                 setDate(new Date(tp.dated))
             }
 
-            const time = Moment(new Date(tp.dated)).format("MMM Do YYYY")
+            const time = dayjs(new Date(tp.dated)).format("MMM D YYYY")
 
             function active() {
                 return (
@@ -216,7 +216,7 @@ function Boardgamedetail({show, updateBG, deleteBG, setShow, bg, setDate, date})
                     </ListGroup.Item>
                 )
             }
-        return [(Moment(date).format("MMM Do YYYY") === time) ? active() : unactive()]
+        return [(dayjs(date).format("MMM D YYYY") === time) ? active() : unactive()]
     }))}
 
 
@@ -226,11 +226,10 @@ function Boardgamedetail({show, updateBG, deleteBG, setShow, bg, setDate, date})
             <Card.Header>
                     <Row>
                         <Col>
-                            <h1>{show.Name}</h1>
+                            <Card.Link className="carddate" target="_blank" href={show.url}><h1>{show.Name}</h1></Card.Link>
                             {show.theme !== "" ? <Card.Subtitle>Theme: {show.theme}</Card.Subtitle> : null }
                         </Col>
                         <Col className="text-end align-self-end">
-                            <Card.Link className="carddate" target="_blank" href={show.url}>BGG Link</Card.Link>
                             <div>Times Played: {timesPlayed.length}</div>
                             <div>{readTime()}</div>
                         </Col>

@@ -4,15 +4,15 @@ import './App.css';
 import BGList from './components/BGList'
 import { Container } from './popupform/Container';
 import Boardgamedetail from './components/boardgamedetail'
-import Moment from 'moment'
+import * as dayjs from 'dayjs'
 
 // bootstrap css imports
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 
-
 function App() {
   const [date, setDate] = useState(new Date());
+  console.log(date)
   const [bg, setBG] = useState(null);
   const [newbg, setNewBG] = useState({
     Name: "",
@@ -211,9 +211,8 @@ function App() {
   }
 
   function Display() {
-    const calenderDate = Moment(date).format("MMM Do YYYY")
-    const dateComp = bg.filter(p => Moment(new Date(p.dated)).format("MMM Do YYYY") === calenderDate)
-
+    const calenderDate = dayjs(date).format("MMM D YYYY")
+    const dateComp = bg.filter(p => dayjs(new Date(p.dated)).format("MMM D YYYY") === calenderDate)
     function showCalenderComponents() {
       return dateComp.map((boardgame, i) => {
         return (
@@ -241,7 +240,7 @@ function App() {
           <Col sm={4}>
           <div className='calendar-container'>
               <div className='calendar-cushion'>
-              <Calendar onChange={setDate} value={date} />
+              <Calendar calendarType="US" onChange={setDate} value={date} />
               </div>
             </div>
             <div className="newBGbutton">
