@@ -4,15 +4,14 @@ import './App.css';
 import BGList from './components/BGList'
 import { Container } from './popupform/Container';
 import Boardgamedetail from './components/boardgamedetail'
-import Moment from 'moment'
+import * as dayjs from 'dayjs'
 
 // bootstrap css imports
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 
-
 function App() {
-  const [date, setDate] = useState(new Date());
+  const [date, setDate] = useState();
   const [bg, setBG] = useState(null);
   const [newbg, setNewBG] = useState({
     Name: "",
@@ -121,7 +120,8 @@ function App() {
   const triggerText = 'New Boardgame';
 
   const onSubmit = () => {
-    console.log('1')
+    //console.log here becuase otherwise newbg doesn't save the inputted information. Just sends blanks to the backend.
+    console.log(1)
     createBG(newbg);
     setNewBG({
       Name: "",
@@ -211,9 +211,12 @@ function App() {
   }
 
   function Display() {
-    const calenderDate = Moment(date).format("MMM Do YYYY")
-    const dateComp = bg.filter(p => Moment(new Date(p.dated)).format("MMM Do YYYY") === calenderDate)
-
+    function readTime(arg) {
+      const time = dayjs(arg.dated).add(24-dayjs(arg.dated).hour(), "h").format("MMM D YYYY")
+      return time
+    }
+    const calenderDate = dayjs(date).format("MMM D YYYY")
+    const dateComp = bg.filter(p => readTime(p) === calenderDate)
     function showCalenderComponents() {
       return dateComp.map((boardgame, i) => {
         return (
@@ -241,7 +244,7 @@ function App() {
           <Col sm={4}>
           <div className='calendar-container'>
               <div className='calendar-cushion'>
-              <Calendar onChange={setDate} value={date} />
+              <Calendar calendarType="US" onChange={setDate} value={date} />
               </div>
             </div>
             <div className="newBGbutton">

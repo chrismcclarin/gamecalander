@@ -1,4 +1,4 @@
-This is a website to track a lot of information about my baord gaming group.
+This is a website to track a lot of information about my board gaming group.
 
 It contains a calender that you can click through to know what game was played when and a list of every game that was played by my group.
 
