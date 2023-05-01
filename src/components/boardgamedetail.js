@@ -153,8 +153,8 @@ function Boardgamedetail({show, updateBG, deleteBG, setShow, bg, setDate, date})
     const timesPlayed = bg.filter((value) => {
         return value.Name===show.Name
     })
-    function readTime() {
-        const time = dayjs(new Date(show.dated)).format("MMM D YYYY")
+    function readTime(arg) {
+        const time = dayjs(arg.dated).add(24-dayjs(arg.dated).hour(), "h").format("MMM D YYYY")
         return time
     }
 
@@ -177,12 +177,11 @@ function Boardgamedetail({show, updateBG, deleteBG, setShow, bg, setDate, date})
         const sortUniqBy = uniqBy.sort((a, b) => a.dated.localeCompare(b.dated))
 
         return (sortUniqBy.map(tp => {
+            const time = readTime(tp)
             function dateClick(event) {
                 event.preventDefault(event);
-                setDate(new Date(tp.dated))
+                setDate()
             }
-
-            const time = dayjs(new Date(tp.dated)).format("MMM D YYYY")
 
             function active() {
                 return (
@@ -231,7 +230,7 @@ function Boardgamedetail({show, updateBG, deleteBG, setShow, bg, setDate, date})
                         </Col>
                         <Col className="text-end align-self-end">
                             <div>Times Played: {timesPlayed.length}</div>
-                            <div>{readTime()}</div>
+                            <div>{readTime(show)}</div>
                         </Col>
                     </Row>
             </Card.Header>

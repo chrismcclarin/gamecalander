@@ -1,9 +1,9 @@
 //This is a copy of Form's index.js, except for adding the accepted values.
 import React from 'react';
-import Moment from 'moment'
+import * as dayjs from 'dayjs'
 
 export const Form = ({onSubmit, closeModal, handleChange, date, newbg, setNewBG}) => {
-  const Dateline = Moment(date).format("MMM Do YYYY")
+  const Dateline = dayjs(date).format("MMM Do YYYY")
 
   const duoSubmit = (event) => {
     event.preventDefault(event)

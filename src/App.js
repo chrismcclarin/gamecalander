@@ -11,8 +11,7 @@ import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 
 function App() {
-  const [date, setDate] = useState(new Date());
-  console.log(date)
+  const [date, setDate] = useState();
   const [bg, setBG] = useState(null);
   const [newbg, setNewBG] = useState({
     Name: "",
@@ -121,6 +120,7 @@ function App() {
   const triggerText = 'New Boardgame';
 
   const onSubmit = () => {
+    //console.log here becuase otherwise newbg doesn't save the inputted information. Just sends blanks to the backend.
     console.log(1)
     createBG(newbg);
     setNewBG({
@@ -211,8 +211,12 @@ function App() {
   }
 
   function Display() {
+    function readTime(arg) {
+      const time = dayjs(arg.dated).add(24-dayjs(arg.dated).hour(), "h").format("MMM D YYYY")
+      return time
+    }
     const calenderDate = dayjs(date).format("MMM D YYYY")
-    const dateComp = bg.filter(p => dayjs(new Date(p.dated)).format("MMM D YYYY") === calenderDate)
+    const dateComp = bg.filter(p => readTime(p) === calenderDate)
     function showCalenderComponents() {
       return dateComp.map((boardgame, i) => {
         return (
