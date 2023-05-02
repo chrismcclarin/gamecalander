@@ -1,17 +1,29 @@
 import React from 'react';
+import { useState, useEffect } from 'react';
 import * as dayjs from 'dayjs'
 
 export const Form = ({ onSubmit, closeModal, handleChange, date, newbg, setNewBG}) => {
   const Dateline = dayjs(date).format("MMM D YYYY")
+  const [BGGSearch, setBGGSearch] = useState(null);
 
   const duoSubmit = (event) => {
     event.preventDefault(event)
     closeModal();
     onSubmit()
   }
+  
+  const bggsearch = `https://api.geekdo.com/xmlapi/search?search=Wingspan`
+
+  const getBGGSearch = async () => {
+    const response = await fetch(bggsearch);
+    const data = await response.json();
+    setBGGSearch(data);
+  };
+
 
   return (
     <form onSubmit={duoSubmit}>
+       {BGGSearch ? console.log(BGGSearch):""}
       <div className="col-sm-11">
         <label htmlFor="name">Game Name</label>
         <input className="form-control" id="Name" onChange={handleChange} />
