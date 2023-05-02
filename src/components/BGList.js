@@ -11,16 +11,22 @@ function BGList(props) {
                 t.Name === value.Name
             )) 
         )
+        //creates a couting system.
         const searchBG = (arr, optiona, optionb) => {
             const convert = (arr) => {
+                //creates a new object res
                 const res = {};
+                //for each object in the array(in this case games played), we make a key out of the object's name.
                 arr.forEach((obj) => {
                     const key = `${obj.Name}`;
+                    //if that name isn't in the res object, then it gets added,
                     if (!res[key]) {
                         res[key] = {...obj, count: 0 };
                     };
+                    //then we add 1 to res object that fits the name of the board game.
                     res[key].count += 1;
                 });
+            //this returns all the values, so we have a list of how many times we have played each boardgame, that can be matched to the boardgames.
             return Object.values(res);
             };
 

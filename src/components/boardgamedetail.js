@@ -180,7 +180,7 @@ function Boardgamedetail({show, updateBG, deleteBG, setShow, bg, setDate, date})
             const time = readTime(tp)
             function dateClick(event) {
                 event.preventDefault(event);
-                setDate()
+                setDate(time)
             }
 
             function active() {
