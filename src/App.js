@@ -5,6 +5,7 @@ import BGList from './components/BGList'
 import { Container } from './popupform/Container';
 import Boardgamedetail from './components/boardgamedetail'
 import * as dayjs from 'dayjs'
+import { nanoid } from 'nanoid'
 
 // bootstrap css imports
 import Col from 'react-bootstrap/Col'
@@ -212,7 +213,7 @@ function App() {
 
   function Display() {
     function readTime(arg) {
-      const time = dayjs(arg.dated).add(24-dayjs(arg.dated).hour(), "h").format("MMM D YYYY")
+      const time = dayjs(arg.dated).format("MMM D YYYY")
       return time
     }
     const calenderDate = dayjs(date).format("MMM D YYYY")
@@ -235,7 +236,27 @@ function App() {
     return ((dateComp !== 0) ? showCalenderComponents() : '')
   }
 
-  
+  function calendarTile({ date, view }) {
+    let gamesList=[]
+    if(view==="month" && bg){
+      for (let i = 0; i<bg.length; i++) {
+        if (dayjs(date)==dayjs(bg[0].dated)) {
+          console.log("True")
+        }
+        if (date.getFullYear()===dayjs(bg[i].dated).year() && date.getMonth()===dayjs(bg[i].dated).month() && date.getDate()===dayjs(bg[i].dated).date()){
+          gamesList.push(bg[i].Name)
+        }
+      }
+    }
+    const uniqList = gamesList.filter((value, index, self) =>
+            index === self.findIndex((t) => (
+                t === value
+            )) 
+        )
+    return uniqList.map(game =>{
+      return <p key={nanoid()} id="gamefont">{game}</p>
+    })
+  }
   
   return (
     <div className="App">
@@ -244,7 +265,12 @@ function App() {
           <Col sm={4}>
           <div className='calendar-container'>
               <div className='calendar-cushion'>
-              <Calendar calendarType="US" onChange={setDate} value={date} />
+                <Calendar 
+                calendarType="US" 
+                onChange={setDate} 
+                value={date}
+                tileContent={calendarTile}
+                />
               </div>
             </div>
             <div className="newBGbutton">

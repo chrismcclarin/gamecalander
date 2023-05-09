@@ -15,7 +15,7 @@ function SortedList(props) {
                             <Button variant="secondary" className="listing" value={boardgame._id} onClick={props.showComponent}>
                                 {boardgame.Name}
                                 <span>x{boardgame.count}</span>
-                                </Button>
+                            </Button>
                         </div>
                         )})}
                 </Stack>

@@ -154,7 +154,7 @@ function Boardgamedetail({show, updateBG, deleteBG, setShow, bg, setDate, date})
         return value.Name===show.Name
     })
     function readTime(arg) {
-        const time = dayjs(arg.dated).add(24-dayjs(arg.dated).hour(), "h").format("MMM D YYYY")
+        const time = dayjs(arg.dated).format("MMM D YYYY")
         return time
     }
 
