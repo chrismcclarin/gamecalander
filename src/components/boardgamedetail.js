@@ -11,7 +11,6 @@ import { nanoid } from 'nanoid'
 function Boardgamedetail({show, updateBG, deleteBG, setShow, bg, setDate, date}) {
     const [editShow, setEditShow] = useState(show)
 
-
     const removebg = () => {
         deleteBG(show._id);
         setShow()

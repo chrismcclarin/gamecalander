@@ -189,7 +189,6 @@ function App() {
   }
 
   const [show, setShow] = useState(null)
-
   function showComponent (event) {
       event.preventDefault();
       const id = bg.find(ele => ele._id === event.target.value)
@@ -240,20 +239,15 @@ function App() {
     let gamesList=[]
     if(view==="month" && bg){
       for (let i = 0; i<bg.length; i++) {
-        if (dayjs(date)==dayjs(bg[0].dated)) {
-          console.log("True")
-        }
-        if (date.getFullYear()===dayjs(bg[i].dated).year() && date.getMonth()===dayjs(bg[i].dated).month() && date.getDate()===dayjs(bg[i].dated).date()){
-          gamesList.push(bg[i].Name)
+        if (date.getFullYear()===dayjs(bg[i].dated).year() 
+        && date.getMonth()===dayjs(bg[i].dated).month() 
+        && date.getDate()===dayjs(bg[i].dated).date() 
+        && !gamesList.includes(bg[i].Name)){
+            gamesList.push(bg[i].Name)
         }
       }
     }
-    const uniqList = gamesList.filter((value, index, self) =>
-            index === self.findIndex((t) => (
-                t === value
-            )) 
-        )
-    return uniqList.map(game =>{
+    return gamesList.map(game =>{
       return <p key={nanoid()} id="gamefont">{game}</p>
     })
   }

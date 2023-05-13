@@ -2,7 +2,8 @@ import React from 'react';
 import * as dayjs from 'dayjs'
 
 const Trigger = ({ triggerText, buttonRef, showModal, date, setNewBG, newbg }) => {
-  const Dateline = dayjs(date).toString()
+
+  const Dateline = dayjs(date).format("MMM D YYYY")
   const newDate = (newbg) => {
     setNewBG({...newbg, dated: Dateline})
   }
