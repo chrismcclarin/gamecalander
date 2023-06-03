@@ -11,6 +11,12 @@
   margin-top: 20px;
 }
 
+#start-date, #end-date {
+  margin: 1rem .5rem;
+}
+#end-date {
+  width:2.5rem;
+}
 
 .labelSort {
   color:white

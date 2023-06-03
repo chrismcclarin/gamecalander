@@ -1,32 +1,21 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import * as dayjs from 'dayjs'
+import dayjs from 'dayjs'
 
 export const Form = ({ onSubmit, closeModal, handleChange, date, newbg, setNewBG}) => {
   const Dateline = dayjs(date).format("MMM D YYYY")
-  // const [BGGSearch, setBGGSearch] = useState(null);
-  console.log(newbg)
   const duoSubmit = (event) => {
     event.preventDefault(event)
     closeModal();
     onSubmit()
   }
-  
-  // const bggsearch = `https://api.geekdo.com/xmlapi/search?search=Wingspan`
-
-  // const getBGGSearch = async () => {
-  //   const response = await fetch(bggsearch);
-  //   const data = await response.json();
-  //   setBGGSearch(data);
-  // };
-
 
   return (
     <form onSubmit={duoSubmit}>
 
       <div className="col-sm-11">
         <label htmlFor="name">Game Name</label>
-        <input className="form-control" id="Name" onChange={handleChange} />
+        <input className="form-control" id="Name" required onChange={handleChange} />
       </div>
       <div className="col-sm-11">
         <label htmlFor="name">Theme</label>
@@ -140,25 +129,27 @@ export const Form = ({ onSubmit, closeModal, handleChange, date, newbg, setNewBG
         <label htmlFor="name">Game Information</label>
         <textarea className="form-control" id="GameComments" onChange={handleChange}></textarea>
       </div>
-          <br />
-          <label htmlFor="dated">Date : {Dateline}</label>
+          <label htmlFor="startDate">Start Date : {Dateline}</label>
+          <input
+              type="time"
+              className="form-control-sm"
+              id="start-date"
+              required
+              onChange={(e) => {
+                setNewBG({...newbg, startDate: dayjs(`${Dateline} ${e.target.value}`).toString()})
+                }}
+            />
+
+          <label htmlFor="endDate">Length : </label>
           <input
               type="number"
-              className="form-control"
-              id="dated"
+              className="form-control-sm"
+              id="end-date"
               onChange={(e) => {
-                setNewBG({...newbg, dated: dayjs(date).add(e.target.value, "h").toString()})
-                }}
+                setNewBG({...newbg, Length: e.target.value})
+              }}
             />
-            // Issue here is that the second input removes the point of hte first input. 
-            <input
-              type="number"
-              className="form-control"
-              id="dated"
-              onChange={(e) => {
-                setNewBG({...newbg, dated: dayjs(date).add(e.target.value, "m").toString()})
-                }}
-            />
+            hrs
       </div>
       <div className="form-group">
         <button className="col-sm-11 btn btn-primary" type="submit">
