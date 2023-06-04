@@ -11,7 +11,6 @@ import { nanoid } from 'nanoid'
 function Boardgamedetail({show, updateBG, deleteBG, setShow, bg, setDate, date}) {
     const [editShow, setEditShow] = useState(show)
 
-
     const removebg = () => {
         deleteBG(show._id);
         setShow()
@@ -154,7 +153,7 @@ function Boardgamedetail({show, updateBG, deleteBG, setShow, bg, setDate, date})
         return value.Name===show.Name
     })
     function readTime(arg) {
-        const time = dayjs(arg.dated).add(24-dayjs(arg.dated).hour(), "h").format("MMM D YYYY")
+        const time = dayjs(arg.startDate).format("MMM D YYYY")
         return time
     }
 
@@ -162,7 +161,7 @@ function Boardgamedetail({show, updateBG, deleteBG, setShow, bg, setDate, date})
         const convert = (arr) => {
             const res = {};
             arr.forEach((obj) => {
-                const time = dayjs(new Date(obj.dated)).format("MMM D YYYY")
+                const time = dayjs(new Date(obj.startDate)).format("MMM D YYYY")
                 const key = `${obj.Name}${time}`;
                 if (!res[key]) {
                     res[key] = { ...obj, count: 0 };
@@ -174,7 +173,7 @@ function Boardgamedetail({show, updateBG, deleteBG, setShow, bg, setDate, date})
 
         const uniqBy = convert(timesPlayed)
 
-        const sortUniqBy = uniqBy.sort((a, b) => a.dated.localeCompare(b.dated))
+        const sortUniqBy = uniqBy.sort((a, b) => a.startDate.localeCompare(b.startDate))
 
         return (sortUniqBy.map(tp => {
             const time = readTime(tp)

@@ -3,7 +3,7 @@ import React from 'react';
 import * as dayjs from 'dayjs'
 
 export const Form = ({onSubmit, closeModal, handleChange, date, newbg, setNewBG}) => {
-  const Dateline = dayjs(date).format("MMM Do YYYY")
+  const Dateline = dayjs(date).format("MMM DD YYYY")
 
   const duoSubmit = (event) => {
     event.preventDefault(event)
@@ -132,8 +132,17 @@ export const Form = ({onSubmit, closeModal, handleChange, date, newbg, setNewBG}
         <label htmlFor="name">Game Information</label>
         <textarea className="form-control" defaultValue={newbg.GameComments} id="GameComments" onChange={handleChange}></textarea>
       </div>
-          <br />
-          <label htmlFor="dated">Date : {Dateline}</label>
+          <label htmlFor="startDate">Date : {Dateline}</label>
+          <input
+              type="datetime-local"
+              className="form-control-sm"
+              id="start-date"
+              defaultValue={dayjs(newbg.startDate).format("YYYY-MM-DDTHH:MM")}
+              onChange={(e) => {
+                newbg.startDate = dayjs(e.target.value).toString()
+                setNewBG({...newbg})
+                }}
+            />
       </div>
       <div className="form-group formsubmitbtn">
         <button className="col-sm-11 btn btn-primary" type="submit">

@@ -5,6 +5,7 @@ import BGList from './components/BGList'
 import { Container } from './popupform/Container';
 import Boardgamedetail from './components/boardgamedetail'
 import * as dayjs from 'dayjs'
+import { nanoid } from 'nanoid'
 
 // bootstrap css imports
 import Col from 'react-bootstrap/Col'
@@ -69,7 +70,7 @@ function App() {
     GameComments: "",
     url: "",
     theme: "",
-    dated: ""
+    startDate: ""
   });
   const URL = "https://bgbackend.herokuapp.com/bg/";
   // const URL = "http://localhost:4000/bg/";
@@ -179,7 +180,7 @@ function App() {
       GameComments: "",
       url: "",
       theme: "",
-      dated: ""
+      startDate: ""
     })
   };
   
@@ -188,7 +189,6 @@ function App() {
   }
 
   const [show, setShow] = useState(null)
-
   function showComponent (event) {
       event.preventDefault();
       const id = bg.find(ele => ele._id === event.target.value)
@@ -212,7 +212,7 @@ function App() {
 
   function Display() {
     function readTime(arg) {
-      const time = dayjs(arg.dated).add(24-dayjs(arg.dated).hour(), "h").format("MMM D YYYY")
+      const time = dayjs(arg.startDate).format("MMM D YYYY")
       return time
     }
     const calenderDate = dayjs(date).format("MMM D YYYY")
@@ -235,7 +235,22 @@ function App() {
     return ((dateComp !== 0) ? showCalenderComponents() : '')
   }
 
-  
+  function calendarTile({ date, view }) {
+    let gamesList=[]
+    if(view==="month" && bg){
+      for (let i = 0; i<bg.length; i++) {
+        if (date.getFullYear()===dayjs(bg[i].startDate).year() 
+        && date.getMonth()===dayjs(bg[i].startDate).month() 
+        && date.getDate()===dayjs(bg[i].startDate).date() 
+        && !gamesList.includes(bg[i].Name)){
+            gamesList.push(bg[i].Name)
+        }
+      }
+    }
+    return gamesList.map(game =>{
+      return <p key={nanoid()} id="gamefont">{game}</p>
+    })
+  }
   
   return (
     <div className="App">
@@ -244,7 +259,12 @@ function App() {
           <Col sm={4}>
           <div className='calendar-container'>
               <div className='calendar-cushion'>
-              <Calendar calendarType="US" onChange={setDate} value={date} />
+                <Calendar 
+                calendarType="US" 
+                onChange={setDate} 
+                value={date}
+                tileContent={calendarTile}
+                />
               </div>
             </div>
             <div className="newBGbutton">

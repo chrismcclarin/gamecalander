@@ -1,9 +1,9 @@
 import React from 'react';
-import * as dayjs from 'dayjs'
+import { useState, useEffect } from 'react';
+import dayjs from 'dayjs'
 
 export const Form = ({ onSubmit, closeModal, handleChange, date, newbg, setNewBG}) => {
   const Dateline = dayjs(date).format("MMM D YYYY")
-
   const duoSubmit = (event) => {
     event.preventDefault(event)
     closeModal();
@@ -12,9 +12,10 @@ export const Form = ({ onSubmit, closeModal, handleChange, date, newbg, setNewBG
 
   return (
     <form onSubmit={duoSubmit}>
+
       <div className="col-sm-11">
         <label htmlFor="name">Game Name</label>
-        <input className="form-control" id="Name" onChange={handleChange} />
+        <input className="form-control" id="Name" required onChange={handleChange} />
       </div>
       <div className="col-sm-11">
         <label htmlFor="name">Theme</label>
@@ -128,8 +129,27 @@ export const Form = ({ onSubmit, closeModal, handleChange, date, newbg, setNewBG
         <label htmlFor="name">Game Information</label>
         <textarea className="form-control" id="GameComments" onChange={handleChange}></textarea>
       </div>
-          <br />
-          <label htmlFor="dated">Date : {Dateline}</label>
+          <label htmlFor="startDate">Start Date : {Dateline}</label>
+          <input
+              type="time"
+              className="form-control-sm"
+              id="start-date"
+              required
+              onChange={(e) => {
+                setNewBG({...newbg, startDate: dayjs(`${Dateline} ${e.target.value}`).toString()})
+                }}
+            />
+
+          <label htmlFor="endDate">Length : </label>
+          <input
+              type="number"
+              className="form-control-sm"
+              id="end-date"
+              onChange={(e) => {
+                setNewBG({...newbg, Length: e.target.value})
+              }}
+            />
+            hrs
       </div>
       <div className="form-group">
         <button className="col-sm-11 btn btn-primary" type="submit">
