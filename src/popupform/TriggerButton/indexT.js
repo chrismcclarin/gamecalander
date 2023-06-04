@@ -5,7 +5,7 @@ const Trigger = ({ triggerText, buttonRef, showModal, date, setNewBG, newbg }) =
 
   const Dateline = dayjs(date).format("MMM D YYYY")
   const newDate = (newbg) => {
-    setNewBG({...newbg, dated: Dateline})
+    setNewBG({...newbg, startDate: Dateline})
   }
 
   function click() {

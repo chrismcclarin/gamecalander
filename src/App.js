@@ -70,7 +70,7 @@ function App() {
     GameComments: "",
     url: "",
     theme: "",
-    dated: ""
+    startDate: ""
   });
   const URL = "https://bgbackend.herokuapp.com/bg/";
   // const URL = "http://localhost:4000/bg/";
@@ -180,7 +180,7 @@ function App() {
       GameComments: "",
       url: "",
       theme: "",
-      dated: ""
+      startDate: ""
     })
   };
   
@@ -212,7 +212,7 @@ function App() {
 
   function Display() {
     function readTime(arg) {
-      const time = dayjs(arg.dated).format("MMM D YYYY")
+      const time = dayjs(arg.startDate).format("MMM D YYYY")
       return time
     }
     const calenderDate = dayjs(date).format("MMM D YYYY")
@@ -239,9 +239,9 @@ function App() {
     let gamesList=[]
     if(view==="month" && bg){
       for (let i = 0; i<bg.length; i++) {
-        if (date.getFullYear()===dayjs(bg[i].dated).year() 
-        && date.getMonth()===dayjs(bg[i].dated).month() 
-        && date.getDate()===dayjs(bg[i].dated).date() 
+        if (date.getFullYear()===dayjs(bg[i].startDate).year() 
+        && date.getMonth()===dayjs(bg[i].startDate).month() 
+        && date.getDate()===dayjs(bg[i].startDate).date() 
         && !gamesList.includes(bg[i].Name)){
             gamesList.push(bg[i].Name)
         }
