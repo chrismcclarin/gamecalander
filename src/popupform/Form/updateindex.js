@@ -38,7 +38,6 @@ export const Form = ({onSubmit, closeModal, handleChange, date, newbg, setNewBG}
         id="newbg.Groupwin"
         checked={newbg.Groupwin}
         onChange={(e) => {
-          console.log(newbg)
           newbg.Groupwin = e.target.checked
           setNewBG({...newbg})
         }}
