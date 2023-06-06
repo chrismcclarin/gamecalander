@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import dayjs from 'dayjs'
 
 export const Form = ({ onSubmit, closeModal, handleChange, date, newbg, setNewBG}) => {
-  const Dateline = dayjs(date).format("MMM D YYYY")
+  const Dateline = dayjs(date).format("MMM DD YYYY")
   const duoSubmit = (event) => {
     event.preventDefault(event)
     closeModal();
@@ -136,7 +136,7 @@ export const Form = ({ onSubmit, closeModal, handleChange, date, newbg, setNewBG
               id="start-date"
               required
               onChange={(e) => {
-                setNewBG({...newbg, startDate: dayjs(`${Dateline} ${e.target.value}`).toString()})
+                setNewBG({...newbg, Datetest: new Date(`${Dateline} ${e.target.value}`)})
                 }}
             />
 

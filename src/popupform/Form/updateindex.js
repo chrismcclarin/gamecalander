@@ -139,7 +139,7 @@ export const Form = ({onSubmit, closeModal, handleChange, date, newbg, setNewBG}
               id="start-date"
               defaultValue={dayjs(newbg.startDate).format("YYYY-MM-DDTHH:MM")}
               onChange={(e) => {
-                newbg.startDate = dayjs(e.target.value).toString()
+                newbg.startDate = new Date(e.target.value)
                 setNewBG({...newbg})
                 }}
             />
