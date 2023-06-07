@@ -11,7 +11,7 @@ function BGList(props) {
                 t.Name === value.Name
             )) 
         )
-        //creates a couting system.
+        //creates a counting system.
         const searchBG = (arr, optiona, optionb) => {
             const convert = (arr) => {
                 //creates a new object res
