@@ -72,8 +72,8 @@ function App() {
     theme: "",
     startDate: ""
   });
-  const URL = "https://bgbackend.herokuapp.com/bg/";
-  // const URL = "http://localhost:4000/bg/";
+  // const URL = "https://bgbackend.herokuapp.com/bg/";
+  const URL = "http://localhost:4000/bg/";
 
   const getBG = async () => {
       const response = await fetch(URL);
